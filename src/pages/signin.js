@@ -22,15 +22,15 @@ export default () => {
     const auth = firebase.auth();
 
     const btnGoogle = document.getElementById('btnGoogle');
-		const btnLogin = document.getElementById('btnLogin');
-		const txtError = document.getElementById('txtError');
+	const btnLogin = document.getElementById('btnLogin');
+	const txtError = document.getElementById('txtError');
 
-		// if already logged in, go to map
-		firebase.auth().onAuthStateChanged((user) => {
-			if (user) {
-				App.router.navigate('/map');
-			}
-		});
+	// if already logged in, go to map
+	firebase.auth().onAuthStateChanged((user) => {
+		if (user) {
+			App.router.navigate('/map');
+		}
+	});
 
     // Login event
     btnLogin.addEventListener('click', () => {
@@ -58,7 +58,7 @@ export default () => {
 				const provider = new firebase.auth.GoogleAuthProvider();
         auth.signInWithPopup(provider)
             .then(() => {
-								App.router.navigate('/intro');
+				App.router.navigate('/intro');
             }).catch((error) => {
                 console.log(error.message);
             });

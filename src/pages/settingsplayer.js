@@ -44,21 +44,24 @@ export default () => {
 	const nextBtn = document.getElementById('next');
 	const error = document.getElementById('txtError');
 
-	// function to put gamecode in local storage
-	function gamecodeStorage() {
-		const gamecode = inputGamecode.value;
 
-		if (gamecode.length !== 5) {
-			error.innerHTML = 'Deze code is onjuist, probeer het nog eens!';
-		} else {
-			localStorage.setItem('GameCode', gamecode);
-			window.location.href = '/#!/settingsplayer2';
-		}
+	// Check if code from input exist in storage
+	function codeChecker() {
+		const gamecode = inputGamecode.value;
+		App.firebase.getFirestore().collection('games').doc(gamecode).get().then(function(doc) {
+			if (doc.exists) {
+				console.log(doc.data())
+				localStorage.setItem('GameCode', gamecode);
+				window.location.href = '/#!/settingsplayer2';
+			} else {
+				error.innerHTML = 'Deze code bestaat niet, probeer nog eens';
+			}
+		}) 
 	}
 
 	// When clicking on next button, run the function
 	nextBtn.addEventListener('click', () => {
-		gamecodeStorage();
+		codeChecker();
 	});
 
 	// Set players in the game
@@ -69,6 +72,9 @@ export default () => {
 			console.log(doc.data());
 		})
 	}); */
+
+	
+
 
 	/* App.firebase.getFirestore().collection('games').get().then((games) => {
 		games.forEach((game) => {

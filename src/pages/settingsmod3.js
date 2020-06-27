@@ -24,11 +24,12 @@ export default () => {
 
 		// Constanten
 		const buttonMod = document.getElementById('btnModerator');
+		const inputDistance = document.getElementById('inputDistance');
 		const notification = new Notify();
 
 		// function to put chosen distance in local storage
 		function distanceStorage() {
-			const distance = document.getElementById('inputDistance').value;
+			const distance = inputDistance.value;
 			localStorage.setItem('Distance', distance);
 		}
 
@@ -42,12 +43,23 @@ export default () => {
 			});
 		}
 
-		// Notify
+		// If you click the next button
 		buttonMod.addEventListener('click', () => {
-			setCollection();
-			notification.notifyModerator();
-			distanceStorage();
+			const txtError = document.getElementById('txtError');
 
-			localStorage.setItem('start game', 'ready');
+			// error giving
+			if (inputDistance.value == 0) {
+				txtError.innerHTML = 'Gelieve in te geven hoelang de straal moet zijn.';
+			} 
+			else if (inputDistance.value > 2000) { 
+				txtError.innerHTML = 'Je kan de straal maximum 2 km zetten, gelieve de straal in te korten.';
+			} 
+			else {
+				setCollection();
+				notification.notifyModerator();
+				distanceStorage();
+				localStorage.setItem('start game', 'ready');
+				App.router.navigate('/mapmoderator');
+			}
 		});
 };
