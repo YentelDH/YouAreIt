@@ -1,0 +1,146 @@
+/******************************* Settings General *******************************/
+
+.a-preparation-header {
+
+	&__title {
+		@include title-small;
+		text-align: center;
+	}
+
+	&__text {
+		@include text-italic;
+		text-align: center;
+	}
+}
+
+.a-player__image {
+	position: absolute;
+	max-width: 100%;
+	width: 100%;
+	height: auto;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.a-dot {
+	@include square(rem(10px));
+	border-radius: rem(50px);
+	background-color: $title-color-primary;
+
+	&.active {
+		transform: scale(1.4);
+	}
+}
+
+/******************************* Settings Moderator *******************************/
+
+
+.a-player {
+
+	&-more {
+		display: inline;
+		max-width: 100%;
+		transform: scale(0.5);
+	}
+
+	&-picture {
+		display: inline;
+		max-width: 100%;
+		transform: translateY(-25%);
+	}
+
+	&-name {
+		@include text-bold;
+		margin: 0;
+	}
+
+	&-code {
+		@include text-small;
+		margin: 0;
+	}
+
+	&-playerline {
+		border: 1px solid;
+	}
+}
+
+.a-gameCode {
+	color: $text-color-primary;
+}
+
+/******************************* Settings Moderator 2 *******************************/
+
+.a-timer {
+
+	&-input {
+		width: rem(100px);
+		border: 1px solid $background-color-overlay;
+		padding: rem(5px) rem(10px);
+		@include text-bold;
+
+		&::-webkit-input-placeholder {
+			text-align: right;
+		}
+	}
+
+	&-text {
+		@include text-small;
+		margin-left: rem(15px);
+	}
+}
+
+
+/******************************* Settings Moderator 3 *******************************/
+
+.a-radius {
+
+	&-input {
+		width: rem(100px);
+		border: 1px solid $background-color-overlay;
+		padding: rem(5px) rem(10px);
+		@include text-bold;
+
+		&::-webkit-input-placeholder {
+			text-align: right;
+		}
+	}
+
+	&-text {
+		@include text-small;
+		margin-left: rem(15px);
+	}
+}
+
+.a-overlay {
+
+	&-title {
+		color: $white;
+		font-size: $font-size-large;
+		font-weight: 500;
+		padding: 0 20px;
+	}
+
+	&-text {
+		color: $white;
+		font-size: $font-size-small;
+		font-weight: 300;
+		padding: 0 20px;
+	}
+}
+
+
+.a-button-options {
+	@include square(rem(60px));
+	@include shadow(8px 5px 40px 9px rgba(112, 112, 112, 0.15));
+	position: absolute;
+	background-color: $white;
+	border-radius: 50%;
+	right: rem(34px);
+	top: rem(120px);
+	color: $primary-purple;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: $font-size-small;
+}

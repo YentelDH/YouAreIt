@@ -1,0 +1,15 @@
+.m-slide-item {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+
+	.m-logo {
+		margin-top: rem(100px);
+		fill: $title-color-primary;
+	}
+
+	.m-slide-content {
+		margin-top: rem(80px);
+		padding: rem(20px);
+	}
+}

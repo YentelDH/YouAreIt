@@ -1,0 +1,21 @@
+.o-background-salmon {
+	background-color: $background-color-secondary;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.o-settings-header {
+	@include card;
+	margin-top: rem(-80px);
+	// transform: translateY(-100px);
+	@include text-center;
+}
+
+.o-general-settings {
+	@include card;
+	margin-top: rem(50px);
+	margin-bottom: rem(50px);
+	padding-top: rem(10px);
+	padding-bottom: rem(10px);
+}

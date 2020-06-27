@@ -1,0 +1,65 @@
+.m-overlay {
+
+	&-end {
+		display: none;
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: $background-color-overlay;
+		z-index: 3;
+		cursor: pointer;
+		text-align: center;
+		justify-content: center;
+		flex-direction: column;
+	}
+
+	&-start {
+		display: flex;
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: $background-color-overlay;
+		z-index: 3;
+		cursor: pointer;
+		text-align: center;
+		justify-content: center;
+		flex-direction: column;
+	}
+}
+
+#progressbar {
+  width: 100vw;
+	height: 6px;
+	z-index: 4;
+	background-color: $background-color-overlay-bar;
+	margin-bottom: 10px;
+}
+
+.m-timer {
+	margin-bottom: rem(17px);
+}
+
+/*************** Modal Popup ***************/
+.m-popup {
+	width: 90vw;
+	background-color: $white;
+	color: $primary-purple;
+	padding: rem(30px);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-radius: 10px;
+	z-index: 4;
+	top: 1000px;
+	position: absolute;
+	text-align: center;
+	transition: 0.5s;
+}

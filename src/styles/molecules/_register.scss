@@ -1,0 +1,19 @@
+.m-register__item {
+	width: 50%;
+	display: flex;
+	justify-content: center;
+	font-size: $font-size-medium;
+	align-items: center;
+
+	&.active {
+		border-bottom: 1px solid $secondary-purple;
+		color: $primary-purple;
+		font-weight: 500;
+	}
+}
+
+.m-logo {
+	display: flex;
+	justify-content: center;
+	fill: $title-color-primary;
+}

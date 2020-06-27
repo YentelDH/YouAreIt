@@ -1,0 +1,39 @@
+<div class="u-container">
+    <div class="o-container">
+    	<div class="m-background-color">
+		</div>
+
+			<div class="o-settings-header">
+				<div class="m-settings-header__frame">
+					<img class="a-settings-image" id="newImg" src="https://pwco.com.sg/wp-content/uploads/Generic-Profile-Placeholder-v3.png" alt="Profielfoto"/> 
+				</div>
+
+				<p class="a-settings-name" id="newName"></p>
+				<p class="a-settings-code" id="newCode">#94540</p>
+			</div>
+
+					{{!-- <input id="btnImgUpload" type="file"> --}}
+
+			<h3 class="a-games-title">Recente spellen</h3>
+			<div class="o-games-card">
+				<p class="a-games-descr">Tik op het spel om de spelers te zien die meespeelden.</p>
+				<ul class="o-container-games">
+				{{#each games}}
+					<li class="o-container-game">
+						<img src="../assets/icons/logo/group.svg" alt="avatar" class="a-icon-group">
+						<div class="m-game-info">
+							<p class="a-game">Spel van: <b class="a-game-name">{{name}}</b></p>
+							<p class="a-game">Locatie: <b class="a-game-name">{{location}}</b></p>
+						</div>
+					</li>
+					<hr class="a-line-horizontal">
+				{{/each}}
+				</ul>
+			</div>
+
+		
+    </divclas>
+	<a href="/settings" class="m-button-rectangle color left" data-navigo>
+		{{> arrow-left }} Terug
+	</a>
+</div>

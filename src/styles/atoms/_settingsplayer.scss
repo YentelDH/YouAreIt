@@ -1,0 +1,33 @@
+.a-player {
+
+	&-text {
+		margin: 0;
+	}
+
+	&-name {
+		@include text-bold;
+		margin: 0;
+	}
+}
+
+
+.a-gamecode {
+
+	&-input {
+		width: rem(130px);
+		border: 1px solid $text-color-secondary;
+		padding: rem(5px) rem(10px);
+		@include text-small;
+		margin-left: rem(10px);
+
+		&::-webkit-input-placeholder {
+			text-align: center;
+			color: $grey-opacity-active;
+		}
+	}
+
+	&-text {
+		@include text-bold;
+		margin-left: rem(15px);
+	}
+}

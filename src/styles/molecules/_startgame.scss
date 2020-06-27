@@ -1,0 +1,8 @@
+.m-card {
+	width: rem(350px);
+	height: rem(210px);
+	@include card;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+}

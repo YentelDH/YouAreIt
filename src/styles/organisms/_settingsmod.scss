@@ -1,0 +1,31 @@
+/******************************* Settings General *******************************/
+
+.o-preparation-card {
+	@include card;
+	margin: rem(50px) rem(30px);
+	width: 90vw;
+	height: 70vh;
+	padding: 0;
+	overflow: scroll;
+}
+
+/******************************* Settings Moderator *******************************/
+
+.o-preparation-players {
+	height: 41vh;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+.o-container-player {
+	display: flex;
+	align-items: center;
+	padding: rem(20px) rem(30px);
+}
+
+/******************************* Settings Moderator 2 *******************************/
+
+
+/******************************* Settings Moderator 3 *******************************/

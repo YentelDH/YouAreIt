@@ -1,26 +1,26 @@
 {
-  "name": "mobdev1-template-final",
+  "name": "1920-mobdev1-code-template-full",
   "version": "1.0.0",
   "private": true,
-  "description": "Full Code Template for the final assignments of Mobile Development I",
+  "description": "Full Code Template for the course Mobile Development I",
   "scripts": {
     "dev": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production --config ./webpack.config.js "
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gdmgent-mobdev1/mobdev1-template-final.git"
+    "url": "git+https://github.com/gdmgent-1920-mobdev1/1920-mobdev1-code-template-full.git"
   },
   "bugs": {
-    "url": "https://github.com/gdmgent-mobdev1/mobdev1-template-final/issues"
+    "url": "https://github.com/gdmgent-1920-mobdev1/1920-mobdev1-code-template-full/issues"
   },
-  "homepage": "https://github.com/gdmgent-mobdev1/mobdev1-template-final#readme",
+  "homepage": "https://github.com/gdmgent-1920-mobdev1/1920-mobdev1-code-template-full#readme",
   "keywords": [
     "Webpack",
     "JS",
     "Vanilla"
   ],
-  "author": "Artevelde University College Ghent",
+  "author": "Yentel De Hauwere",
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.10.3",
@@ -59,10 +59,11 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "firebase": "^7.15.4",
+    "firebase": "^7.15.5",
     "handlebars": "^4.7.6",
     "mapbox-gl": "^1.11.0",
     "navigo": "^7.1.2",
+    "progressbar.js": "^1.1.0",
     "serviceworker-webpack-plugin": "^1.0.1"
   }
 }

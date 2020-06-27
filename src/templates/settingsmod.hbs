@@ -1,0 +1,53 @@
+<div class="u-container">
+	<div class="o-container">
+		<div class="o-preparation-card">
+
+			<div class="m-preparation-header">
+				<h2 class="a-preparation-header__title">Voeg spelers toe</h2>
+				<p class="a-preparation-header__text">Tik op de vrienden die jij wilt toevoegen </p>
+				<p class="a-preparation-header__text">of</p>
+				<p class="a-preparation-header__text">Laat je vrienden deze code invoeren: <b class="a-gameCode" id="gameCode"></b></p>
+			</div>
+
+
+			<ul class="o-preparation-players">
+				<li class="o-container-player" tabindex="-1">
+						<div class="m-player-frame">
+							<img src="../assets/icons/logo/more.svg" alt="avatar" class="a-player-more">
+						</div>
+						<div class="m-player-info">
+							<p class="a-player-name">Voeg speler toe</p>
+							<p class="a-player-code">Tik hier voor toe te voegen.</p>
+						</div>
+					</li>
+				{{#each players}}
+					<li class="o-container-player" tabindex="-1">
+						<div class="m-player-frame">
+							<img src="../assets/images/example.jpg" alt="avatar" class="a-player-picture">
+						</div>
+						<div class="m-player-info">
+							<p class="a-player-name">{{name}}</p>
+							<p class="a-player-code">#{{code}}</p>
+						</div>
+					</li>
+				{{/each}}
+			</ul>
+		</div>
+
+		<div class="m-dots">
+			<a href="#" data-navigo> <div class="a-dot active"></div></a>
+			<a href="/settingsmod2" data-navigo> <div class="a-dot"></div></a>
+			<a href="/settingsmod3" data-navigo> <div class="a-dot"></div></a>
+		</div>
+
+		<div class="o-container-buttons">
+			<a href="/startgame" id="goBack" class="m-button-rectangle color left" data-navigo>
+				{{> arrow-left }} Terug
+			</a>
+			<a href="/settingsmod2" class="m-button-rectangle color right" data-navigo>
+				Volgende {{> arrow-right }}
+			</a>
+		</div>
+
+	</div>
+</div>

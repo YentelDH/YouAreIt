@@ -1,0 +1,25 @@
+* {
+	box-sizing: border-box;
+}
+
+.o-slider {
+	width: 100vw;
+	text-align: center;
+	overflow: hidden;
+}
+
+.o-slider__slides {
+	display: flex;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory; // when scrolling, it stops at one div
+	scroll-behavior: smooth; //
+	-webkit-overflow-scrolling: touch;
+
+	& > .m-slide-item {
+		scroll-snap-align: start;
+		flex-shrink: 0;
+		width: 100vw;
+		height: 100vh;
+		background-color: $background-color-primary;
+	}
+}

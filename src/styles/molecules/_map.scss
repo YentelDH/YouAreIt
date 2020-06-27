@@ -1,0 +1,36 @@
+.m-mapbox {
+	width: 100vw;
+	height: 92vh;
+}
+
+.m-button-frame {
+	position: absolute;
+	@include square(rem(80px));
+	overflow: hidden;
+	border-radius: rem(50px);
+	border: 3px solid $white;
+	@include shadow(8px 5px 40px 9px rgba(112, 112, 112, 0.15));
+	right: rem(25px);
+	top: rem(25px);
+}
+
+.mapboxgl-ctrl-top-right {
+	left: 0;
+}
+
+.mapboxgl-ctrl-top-right .mapboxgl-ctrl {
+	float: left;
+	margin: rem(30px);
+	border-radius: 50px;
+}
+
+.mapboxgl-ctrl-bottom {
+
+	&-left {
+		display: none;
+	}
+
+	&-right {
+		display: none;
+	}
+}

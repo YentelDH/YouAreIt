@@ -1,28 +1,41 @@
 // Primitive colors
 // ------------------------------------------------------------------------- /
-$alabaster: #fafafa;
-$mercury: #e6e6e6;
-$dusty: #999;
-$shark: #262626;
-$midnight: #003569;
-
 $white: #fff;
-$black: #000;
+
+$salmon: #fbfafd;
+$babypurple: #f6f5fb;
+
+$lightgrey: #a6a6a6;
+$darkgrey: #707070;
+
+$red: #f03;
+
+$primary-purple: #6441aa;
+$secondary-purple: #7d3796;
+
+$gradient-color-primary: linear-gradient(to left bottom, #7d3796, #78399b, #723ca0, #6c3ea5, #6441aa);
+$gradient-color-secondary: linear-gradient(to bottom, #7d3796, #78399b, #723ca0, #6c3ea5, #6441aa);
+
 
 // Contextual colors
 // ---
 // These are the colors that you're supposed to use.
 // ------------------------------------------------------------------------- /
-$color-base: $shark;
-$border-color: $mercury;
+$background-color-primary: $white;
+$background-color-secondary: $salmon;
+$background-color-hover: $babypurple;
 
-$text-color-primary: $shark;
-$link-color-primary: $midnight;
-$icon-color-primary: $shark;
-$border-color-primary: $mercury;
-$background-color-primary: $alabaster;
+$background-color-overlay: rgba($primary-purple, 0.7);
+$background-color-overlay-bar: rgba($primary-purple, 0.1);
 
-$text-color-secondary: $dusty;
-$background-color-secondary: $white;
+$button-color-primary: $gradient-color-primary;
+$button-color-secondary: $gradient-color-secondary;
 
-$background-color-overlay: rgba($black, 0.3);
+$title-color-primary: $primary-purple;
+$text-color-primary: $darkgrey;
+$text-color-secondary: $lightgrey;
+$error-red: $red;
+
+$grey-opacity: rgba($darkgrey, 0.2);
+$grey-opacity-active: rgba($darkgrey, 0.5);
+

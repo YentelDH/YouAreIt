@@ -1,0 +1,35 @@
+.a-icon {
+
+	&-arrow-left {
+		height: rem(18px);
+		margin-right: rem(25px);
+	}
+
+	&-arrow-right {
+		height: rem(18px);
+		margin-left: rem(25px);
+	}
+
+	&-walker {
+		height: rem(25px);
+		margin-left: rem(20px);
+	}
+
+	&-settings {
+		height: 18pt;
+		margin-right: rem(10px);
+
+		&-header {
+			height: 18pt;
+			margin: 0;
+		}
+	}
+
+	&-arrow {
+		height: 16pt;
+	}
+
+	&-group {
+		height: 30pt;
+	}
+}

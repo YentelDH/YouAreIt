@@ -39,6 +39,10 @@ class FireBase {
   getAuth() {
     return firebase.auth();
   }
+
+  getFirestoreWithoutBraces() {
+    return firebase.firestore();
+  }
 }
 
 export default FireBase;

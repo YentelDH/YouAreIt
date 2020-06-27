@@ -1,0 +1,12 @@
+.a-card__ {
+
+	&title {
+		@include title-big;
+		margin: 0;
+	}
+
+	&text {
+		@include text-italic;
+		margin: 0;
+	}
+}

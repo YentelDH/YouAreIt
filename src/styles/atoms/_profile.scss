@@ -1,0 +1,27 @@
+.a-games-title {
+	@include text-bold;
+	width: 80vw;
+	margin-top: rem(50px);
+	margin-bottom: rem(10px);
+}
+
+.a-game {
+	margin: 0;
+	margin-left: rem(30px);
+
+	&-name {
+		font-size: $font-size-medium;
+		color: $text-color-primary;
+		font-weight: 400;
+	}
+}
+
+.a-line-horizontal {
+	border: 0.5px solid $grey-opacity;
+}
+
+.a-games-descr {
+	@include text-small;
+	text-align: center;
+	padding-bottom: rem(30px);
+}

@@ -4,7 +4,6 @@
 
 .o-footer {
 	padding: rem(40px) 0;
-
 	font-size: rem($font-size-small);
 	font-weight: 600;
 	text-transform: uppercase;
@@ -29,7 +28,6 @@
 		justify-content: flex-start;
 		max-width: $screen-sm;
 
-		color: $link-color-primary;
 
 		@include at($screen-lg) {
 			flex-wrap: nowrap;
@@ -53,7 +51,6 @@
 	}
 
 	&__copyright {
-		color: $text-color-secondary;
 		text-align: right;
 
 		@include at($screen-lg) {

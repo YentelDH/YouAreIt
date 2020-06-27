@@ -11,7 +11,6 @@
 		height: rem(32px);
 		width: rem(1.5px);
 		margin: 0 rem(16px);
-		background-color: $icon-color-primary;
 
 		@include at($screen-sm) {
 			display: block;

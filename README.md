@@ -1,4 +1,4 @@
-# mobdev1-template-final
+# 1920-mobdev1-code-template-full
 
 ## Included
 
@@ -25,3 +25,6 @@
 
 3. To run create a new build
 > npm run build
+
+## Firebase link
+* https://werkstukmobdev1.firebaseapp.com

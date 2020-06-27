@@ -1,0 +1,34 @@
+<div class="u-container">
+	<div class="o-container">
+
+		<div class="o-preparation-card">
+			<div class="m-preparation-header">
+				<h2 class="a-preparation-header__title">Timer</h2>
+				<p class="a-preparation-header__text">Typ in hoelang het spel moet duren.</p>
+			</div>
+			<div class="m-container-timer">
+				<input class="a-timer-input" type="number" id="inputMinutes" placeholder="0">
+				<span class="a-timer-text">Minuten</span>
+			</div>
+
+   		</div>
+
+		<div class="m-dots">
+			<a href="/settingsmod" data-navigo> <div class="a-dot"></div></a>
+			<a href="#" data-navigo> <div class="a-dot active"></div></a>
+			<a href="/settingsmod3" data-navigo> <div class="a-dot"></div></a>
+		</div>
+
+		
+
+		<div class="o-container-buttons">
+			<a href="/settingsmod" class="m-button-rectangle color left" data-navigo>
+				{{> arrow-left }} Terug
+			</a>
+			<a href="/settingsmod3" class="m-button-rectangle color right" id="submitMinutes" data-navigo>
+				Volgende {{> arrow-right }}
+			</a>
+		</div>
+
+	</div>
+</div>

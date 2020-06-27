@@ -2,13 +2,17 @@
  * The Firebase Page
  */
 
+/* eslint-disable no-tabs */
+/* eslint-disable indent */
+
+
 import App from '../lib/App';
 
 const firebaseTemplate = require('../templates/firebase.hbs');
 
 export default () => {
   // set the title of this page
-  const title = 'Firebase';
+	const title = 'Firebase';
 
   // only when we have firebase initialized
   if (App.hasFireBase) {

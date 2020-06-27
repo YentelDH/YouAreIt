@@ -1,0 +1,28 @@
+<div class="u-container">
+    <div class="o-container">
+
+			<div class="o-overlay-end" id="overlay"></div>
+			<div class="m-popup" id="popup">
+					<h3 class="a-popup-title">Weet je zeker dat je het spel wilt beëindigen?</h3>
+					<button class="a-popup-button" id="deny">NEE</button>
+					<button class="a-popup-accept" href="/map" data-navigo>JA</button>
+				</div>
+
+			<div class="o-container-cards">
+
+				<a href="/deleteplayers" class="m-card" data-navigo>
+					<h1 class="a-card__title">Verwijder spelers</h1>
+					<p class="a-card__text">Gooi spelers uit het het spel zodat ze niet meer kunnen meespelen.</p>
+				</a>
+
+				<a class="m-card" id="endGameCard">
+					<h1 class="a-card__title">Beëindig spel</h1>
+					<p class="a-card__text">Stop het spel voor iedereen.</p>
+				</a>
+
+			</div>
+			<a href="/mapmoderator" class="m-button-rectangle color left" data-navigo>
+				{{> arrow-left}} Terug
+			</a>
+		</div>
+</div>

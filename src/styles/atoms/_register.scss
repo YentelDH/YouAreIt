@@ -1,0 +1,32 @@
+.a-register__link {
+
+	&:hover {
+		color: $primary-purple;
+		text-decoration: none;
+	}
+}
+
+.a-register__input {
+	padding: rem(10px);
+	border: none;
+	border-bottom: 1px solid $lightgrey;
+	width: 80vw;
+	max-width: 400px;
+
+	&::placeholder {
+		color: $lightgrey;
+		font-size: $font-size-large;
+		font-weight: 300;
+		@media (max-width: $screen-sm) {
+			font-size: $font-size-small;
+		}
+	}
+}
+
+.a-error {
+	height: 40px;
+	margin: 0;
+	top: 0;
+	text-align: center;
+	color: $error-red;
+}

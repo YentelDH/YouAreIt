@@ -1,0 +1,20 @@
+.o-games-card {
+	@include card;
+	margin-bottom: rem(50px);
+}
+
+.o-container-games {
+	height: 41vh;
+	list-style-type: none;
+	width: 80vw;
+	margin: 0;
+	padding: 0;
+	overflow: scroll;
+
+	.o-container-game {
+		display: flex;
+		align-items: center;
+		padding: rem(20px) rem(30px);
+	}
+}
+

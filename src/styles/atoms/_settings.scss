@@ -1,0 +1,56 @@
+.a-settings {
+
+	&-image {
+		position: absolute;
+		max-width: 100%;
+		width: 100%;
+		height: auto;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	&-name {
+		@include title-small-grey;
+		margin-bottom: 0;
+		margin-top: rem(10px);
+	}
+
+	&-code {
+		@include text-small;
+		margin-top: rem(10px);
+	}
+}
+
+.a-horizontal-line {
+	border: 0.5px solid rgba($text-color-secondary, 0.2);
+}
+
+.a-stats {
+
+	&__name {
+		@include text-small;
+		color: $title-color-primary;
+		margin: rem(10px) 0;
+	}
+
+	&__value {
+		font-size: rem(20px);
+		color: $title-color-primary;
+		font-weight: 500;
+		margin: 0;
+	}
+}
+
+.a-general {
+
+	&__name {
+		font-size: $font-size-medium;
+		color: $text-color-primary;
+		font-weight: 300;
+	}
+
+	&__icon {
+		margin-right: rem(20px);
+	}
+}

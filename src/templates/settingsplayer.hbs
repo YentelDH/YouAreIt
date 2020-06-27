@@ -1,0 +1,26 @@
+<div class="u-container">
+	<div class="o-container">
+		<div class="o-preparation-card">
+
+			<div class="m-preparation-header">
+				<h2 class="a-preparation-header__title">Sluit aan</h2>
+				<p class="a-preparation-header__text">Vul de gamecode in van de toezichthouder.</p>
+			</div>
+			<div class="m-container-gamecode">
+				<span class="a-gamecode-text">Gamecode:</span>
+				<input class="a-gamecode-input" id="inputGamecode" type="text" placeholder="a1b2c">
+			</div>
+			<p id="txtError" class="a-error"></p>
+		</div>
+
+		<div class="o-container-buttons">
+			<a href="/startgame" class="m-button-rectangle color left" data-navigo>
+				{{> arrow-left }} Terug
+			</a>
+			<a id="next" class="m-button-rectangle color right">
+				Sluit aan {{> arrow-right }}
+			</a>
+		</div>
+
+	</div>
+</div>

@@ -1,0 +1,26 @@
+.a-popup {
+
+	&-title {
+		@include text-small;
+		color: $text-color-primary;
+		margin: 0;
+		margin-bottom: rem(10px);
+	}
+
+	&-button {
+		color: $white;
+		background-image: $gradient-color-primary;
+		width: 200px;
+		height: rem(45px);
+		margin: rem(20px) 0;
+		border: 0;
+		border-radius: 50px;
+	}
+
+	&-accept {
+		color: $primary-purple;
+		font-weight: 400;
+		background-color: $white;
+		border: none;
+	}
+}
