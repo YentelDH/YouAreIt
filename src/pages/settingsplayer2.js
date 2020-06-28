@@ -15,32 +15,17 @@ export default () => {
 		{
 			img: 'example',
 			name: 'André Spoor',
-			code: '04495',
 		},
 		{
 			img: 'example',
 			name: 'Hubertus Wiel',
-			code: '49251',
 		},
-		{
-			img: 'example',
-			name: 'Monique Verslagen',
-			code: '03955',
-		},
-		{
-			img: 'example',
-			name: 'Yvonne Stoom',
-			code: '03245',
-		},
-		{
-			img: 'example',
-			name: 'Julius Patron',
-			code: '93045',
-		},
+
 	];
 
 	const gamecode = localStorage.getItem('GameCode');
 
+	// 
 	App.firebase.getFirestore().collection('games').doc(gamecode).get().then(function(doc) {
 		const moderator = doc.data().moderator;
 

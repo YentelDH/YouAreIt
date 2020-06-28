@@ -49,11 +49,23 @@ export default () => {
 			const username = user.displayName;
 			const gamecode = inputGamecode.value;
 
+			navigator.geolocation.getCurrentPosition((position) => {
+				const lat = position.coords.latitude;
+				const lon = position.coords.longitude;
+		
+				localStorage.setItem('Latitude', lat);
+				localStorage.setItem('Longitude', lon);
+			});
+
+			const lat = localStorage.getItem('Latitude');
+			const lon = localStorage.getItem('Longitude');
+
 			const player = {
 				location: {
-					latitude: "12.334",
-					longitude: "3.3564"
-				}
+					latitude: lat,
+					longitude: lon
+				},
+				image: user.photoURL,
 			}
 		
 			App.firebase.getFirestore().collection("games").doc(gamecode)
@@ -62,8 +74,6 @@ export default () => {
 			});
 		});
 	}
-
-
 
 	// Check if code from input exist in storage
 	function codeChecker() {
