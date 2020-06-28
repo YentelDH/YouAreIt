@@ -35,7 +35,7 @@ export default () => {
 
 	submitMinutes.addEventListener('click', () => {
 		// error giving
-		if (inputMinutes.value === 0) {
+		if (inputMinutes.value == 0) {
 			txtError.innerHTML = 'Gelieve het aantal minuten in te geven.';
 		} else if (inputMinutes.value > 720) {
 			txtError.innerHTML = 'Je kan maar maximum 12 uur spelen, gelieve de tijd in te korten.';

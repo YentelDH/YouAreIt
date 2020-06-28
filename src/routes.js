@@ -3,6 +3,7 @@ import SignUpPage from './pages/signup';
 import SignInPage from './pages/signin';
 import MapPage from './pages/map';
 import MapModeratorPage from './pages/mapmoderator';
+import MapPlayerPage from './pages/mapplayer';
 import IntroPage from './pages/intro';
 import StartGamePage from './pages/startgame';
 import SettingsModPage from './pages/settingsmod';
@@ -20,6 +21,7 @@ export default [
   { path: '/signin', view: SignInPage },
   { path: '/map', view: MapPage },
   { path: '/mapmoderator', view: MapModeratorPage },
+  { path: '/mapplayer', view: MapPlayerPage },
   { path: '/intro', view: IntroPage },
   { path: '/startgame', view: StartGamePage },
   { path: '/settingsmod', view: SettingsModPage },

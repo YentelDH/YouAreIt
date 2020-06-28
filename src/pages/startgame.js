@@ -40,6 +40,7 @@ export default () => {
 			App.firebase.getFirestore().collection('games').doc(gamecode).set({
 				moderator: user.displayName,
 				status: true,
+				started: false,
 			});
 		});
   }

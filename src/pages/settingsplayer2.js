@@ -28,17 +28,17 @@ export default () => {
 		const listItem = document.createElement('li');
 		listItem.classList.add('o-container-player');
 
-			const playerFrame = document.createElement('div');
-			playerFrame.classList.add('m-player-frame');
+		const playerFrame = document.createElement('div');
+		playerFrame.classList.add('m-player-frame');
 
-				const playerImage = document.createElement('img');
-				playerImage.classList.add('a-player-picture');
+		const playerImage = document.createElement('img');
+		playerImage.classList.add('a-player-picture');
 
-			const playerInfo = document.createElement('div');
-			playerInfo.classList.add('m-player-info');
+		const playerInfo = document.createElement('div');
+		playerInfo.classList.add('m-player-info');
 
-				const playerName = document.createElement('p');
-				playerName.classList.add('a-player-name');
+		const playerName = document.createElement('p');
+		playerName.classList.add('a-player-name');
 
 		playerList.appendChild(listItem); // ul > li
 
@@ -50,7 +50,6 @@ export default () => {
 
 		playerName.textContent = doc.data().name;
 		playerImage.src = doc.data().image;
-
 	}
 	
 	App.firebase.getFirestore().collection('games').doc(gamecode)
@@ -59,6 +58,8 @@ export default () => {
 			renderPlayers(doc);
 		})
 	})
+
+	// Function when game has started, go to map
 
 	// If user not logged in, go to sign in
 	firebase.auth().onAuthStateChanged((user) => {

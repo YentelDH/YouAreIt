@@ -14,7 +14,7 @@ import { MAPBOX_API_KEY, firebaseConfig } from '../consts';
 
 import App from '../lib/App';
 
-const mapTemplate = require('../templates/mapmoderator.hbs');
+const mapTemplate = require('../templates/mapplayer.hbs');
 
 export default () => {
 	// render the template
@@ -88,62 +88,6 @@ export default () => {
 		startBar();
 	}
 
-	/* ********************** START GAME *********************** */
-	const overlayStart = document.getElementById('startgame-overlay');
-
-	function activeGame() {
-		const gamecode = localStorage.getItem('GameCode');
-		App.firebase.getFirestore().collection('games').doc(gamecode).update({
-			started: true,
-		});
-	}
-
-	// if clicked on the "start game" popup then hide popup and tell the game has started
-	overlayStart.addEventListener('click', () => {
-		overlayStart.style.display = 'none';
-		localStorage.setItem('start game', 'done');
-		// the timer starts when clicking on overlay
-		startTimer();
-		activeGame();
-	});
-
-	const startGame = localStorage.getItem('start game');
-	// if the game has already started then doesnt show the "start game" popup
-	if (startGame === 'ready') {
-		overlayStart.style.display = 'flex';
-	} else {
-		overlayStart.style.display = 'none';
-	}
-
-	/* ********************** OPTIONS GAME *********************** */
-
-	const closeBtn = document.getElementById('closeBtn');
-	const optionsBtn = document.getElementById('optionsBtn');
-	const popup = document.getElementById('popup-1');
-
-	const endGameCard = document.getElementById('endGameCard');
-	const deny = document.getElementById('deny');
-	const popup2 = document.getElementById('popup-2');
-
-	// show popup when clicking on the card
-	optionsBtn.addEventListener('click', () => {
-		popup.style.zIndex = '2';
-	});
-
-	// hide popup when clicking on the cancel button
-	closeBtn.addEventListener('click', () => {
-		popup.style.zIndex = '-2';
-	});
-
-	// show popup when clicking on the card
-	endGameCard.addEventListener('click', () => {
-		popup2.style.zIndex = '3';
-	});
-
-	// hide popup when clicking on the cancel button
-	deny.addEventListener('click', () => {
-		popup2.style.zIndex = '-3';
-	});
 
   /* ********************** GOOGLE *********************** */
 
