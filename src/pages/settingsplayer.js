@@ -11,26 +11,9 @@ import App from '../lib/App';
 const settingsPlayerTemplate = require('../templates/settingsplayer.hbs');
 
 export default () => {
-	const players = [
-		{
-			name: 'André Spoor',
-		},
-		{
-			name: 'Hubertus Wiel',
-		},
-		{
-			name: 'Monique Verslagen',
-		},
-		{
-			name: 'Yvonne Stoom',
-		},
-		{
-			name: 'Julius Patron',
-		},
-	];
 
 	// render the template
-	App.render(settingsPlayerTemplate({ players }));
+	App.render(settingsPlayerTemplate());
 
 	// If user not logged in, go to sign in
 	firebase.auth().onAuthStateChanged((user) => {
@@ -52,7 +35,7 @@ export default () => {
 			navigator.geolocation.getCurrentPosition((position) => {
 				const lat = position.coords.latitude;
 				const lon = position.coords.longitude;
-		
+
 				localStorage.setItem('Latitude', lat);
 				localStorage.setItem('Longitude', lon);
 			});
@@ -63,14 +46,18 @@ export default () => {
 			const player = {
 				location: {
 					latitude: lat,
-					longitude: lon
+					longitude: lon,
 				},
 				image: user.photoURL,
+				name: user.displayName,
 			}
 		
-			App.firebase.getFirestore().collection("games").doc(gamecode)
-			.collection("players").doc(username).set(player).then(function() {
-				alert("Je bent aan de game toegevoegd")
+			App.firebase.getFirestore().collection('games').doc(gamecode)
+			.collection('players') 
+			.doc(username)
+			.set(player)
+			.then(function() {
+				alert('Je bent aan de game toegevoegd')
 			});
 		});
 	}

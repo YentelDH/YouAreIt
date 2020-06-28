@@ -15,7 +15,7 @@ export default () => {
 		const distancePlaceholder = localStorage.getItem('Distance');
 
 		// render the template
-		App.render(settingsMod3Template({distancePlaceholder}));
+		App.render(settingsMod3Template({ distancePlaceholder }));
 
 		// If user not logged in, go to sign in
 		firebase.auth().onAuthStateChanged((user) => {
@@ -51,18 +51,15 @@ export default () => {
 		// If you click the next button
 		buttonMod.addEventListener('click', () => {
 			// Error giving
-			if (inputDistance.value == 0) {
+			if (inputDistance.value === 0) {
 				txtError.innerHTML = 'Gelieve in te geven hoelang de straal moet zijn.';
-			} 
-			else if (inputDistance.value > 2000) { 
+			} else if (inputDistance.value > 2000) { 
 				txtError.innerHTML = 'Je kan de straal maximum 2 km zetten, gelieve de straal in te korten.';
-			} 
-			else {
+			} else {
 				popup2.style.zIndex = '3';
 				distanceStorage();
 			}
 		});
-
 
 		// hide popup when clicking on the cancel button
 		deny.addEventListener('click', () => {

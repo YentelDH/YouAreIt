@@ -14,7 +14,7 @@ export default () => {
 	const timerPlaceholder = localStorage.getItem('Timer');
 
 	// render the template
-	App.render(settingsMod2Template({timerPlaceholder}));
+	App.render(settingsMod2Template({ timerPlaceholder }));
 
 	// If user not logged in, go to sign in
 	firebase.auth().onAuthStateChanged((user) => {
@@ -27,8 +27,6 @@ export default () => {
 	const submitMinutes = document.getElementById('submitMinutes');
 	const txtError = document.getElementById('txtError');
 
-	
-
 	// function to put chosen timer in local storage
 	function minutesStorage() {
 		const minutes = inputMinutes.value;
@@ -37,15 +35,13 @@ export default () => {
 
 	submitMinutes.addEventListener('click', () => {
 		// error giving
-		if (inputMinutes.value == 0) {
+		if (inputMinutes.value === 0) {
 			txtError.innerHTML = 'Gelieve het aantal minuten in te geven.';
-		} 
-		else if (inputMinutes.value > 720) { 
+		} else if (inputMinutes.value > 720) {
 			txtError.innerHTML = 'Je kan maar maximum 12 uur spelen, gelieve de tijd in te korten.';
-		} 
-		else {
+		} else {
 			minutesStorage();
 			App.router.navigate('/settingsmod3');
-		}		
+		}	
 	});
 };

@@ -7,18 +7,20 @@
 				<p class="a-preparation-header__text">Wacht tot {{moderator}} het spel start.</p>
 			</div>
 
-			<ul class="o-preparation-players">
+			{{!-- <ul class="o-preparation-players">
 				{{#each players}}
 					<li class="o-container-player" tabindex="-1">
 						<div class="m-player-frame">
 							<img src="../assets/images/example.jpg" alt="avatar" class="a-player-picture">
 						</div>
 						<div class="m-player-info">
-							<p class="a-player-name">{{name}}</p>
+							<p class="a-player-name" id="playerName"></p>
 						</div>
 					</li>
 				{{/each}}
-			</ul>
+			</ul> --}}
+
+			<ul class="o-preparation-players" id="player-list"></ul>
 		</div>
 
 			<a href="/settingsplayer" class="m-button-rectangle color left" data-navigo>

@@ -16,6 +16,9 @@
 	@include shadow(8px 5px 40px 9px rgba(112, 112, 112, 0.15));
 	@include square(rem(70px));
 	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .m-dots {
