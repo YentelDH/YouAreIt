@@ -26,11 +26,21 @@ export default () => {
 	/**
    * Function to make a collection of multiple games
    */
-  function setCollection() {
+  function setDocument() {
 		/* thanks to Silver Ringvee: https://stackoverflow.com/users/4769218/silver-ringvee */
 		const randomNumber = Math.random().toString(36).substr(2, 5);
 		localStorage.setItem('GameCode', randomNumber);
 		App.firebase.getFirestore().collection('games').doc(randomNumber).set({
+		});
+  }
+
+  function setCollection() {
+		firebase.auth().onAuthStateChanged((user) => {
+			const gamecode = localStorage.getItem('GameCode');
+			App.firebase.getFirestore().collection('games').doc(gamecode).set({
+				moderator: user.displayName,
+				status: true,
+			});
 		});
   }
 
@@ -41,6 +51,9 @@ export default () => {
 
 	moderatorCard.addEventListener('click', () => {
 		localStorage.setItem('Moderator', true);
+		localStorage.removeItem('Distance');
+		localStorage.removeItem('Timer');
+		setDocument();
 		setCollection();
 	});
 };

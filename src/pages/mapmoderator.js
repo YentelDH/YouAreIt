@@ -78,6 +78,7 @@ export default () => {
 				countdown.textContent = '00:00';
 			}
 
+			// when the timer has stopped
 			if (--timer < 0) {
 				countdown.textContent = 'Game over';
 				overlayEnd.style.display = 'flex';
@@ -218,8 +219,8 @@ mapboxgl.accessToken = MAPBOX_API_KEY;
         paint: {
           'circle-radius': {
             stops: [
-							[0, 0],
-							// eslint-disable-next-line no-mixed-operators
+				[0, 0],
+				// eslint-disable-next-line no-mixed-operators
               [20, (distance, (distance / 0.075 / Math.cos(userLat * Math.PI / 180)))],
             ],
             base: 2,

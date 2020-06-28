@@ -44,20 +44,45 @@ export default () => {
 	const nextBtn = document.getElementById('next');
 	const error = document.getElementById('txtError');
 
+	function setPlayer() {
+		firebase.auth().onAuthStateChanged((user) => {
+			const username = user.displayName;
+			const gamecode = inputGamecode.value;
+
+			const player = {
+				location: {
+					latitude: "12.334",
+					longitude: "3.3564"
+				}
+			}
+		
+			App.firebase.getFirestore().collection("games").doc(gamecode)
+			.collection("players").doc(username).set(player).then(function() {
+				alert("Je bent aan de game toegevoegd")
+			});
+		});
+	}
+
+
 
 	// Check if code from input exist in storage
 	function codeChecker() {
 		const gamecode = inputGamecode.value;
-		App.firebase.getFirestore().collection('games').doc(gamecode).get().then(function(doc) {
-			if (doc.exists) {
-				console.log(doc.data())
-				localStorage.setItem('GameCode', gamecode);
-				window.location.href = '/#!/settingsplayer2';
-			} else {
-				error.innerHTML = 'Deze code bestaat niet, probeer nog eens';
-			}
-		}) 
+		if (gamecode == "") {
+			error.innerHTML = 'Gelieve een gamecode in te geven';
+		} else {
+			App.firebase.getFirestore().collection('games').doc(gamecode).get().then(function(doc) {
+				if (doc.exists) {
+					localStorage.setItem('GameCode', gamecode);
+					window.location.href = '/#!/settingsplayer2';
+					setPlayer();
+				} else {
+					error.innerHTML = 'Deze code bestaat niet, probeer nog eens';
+				}
+			}) 
+		}
 	}
+
 
 	// When clicking on next button, run the function
 	nextBtn.addEventListener('click', () => {
@@ -72,9 +97,6 @@ export default () => {
 			console.log(doc.data());
 		})
 	}); */
-
-	
-
 
 	/* App.firebase.getFirestore().collection('games').get().then((games) => {
 		games.forEach((game) => {

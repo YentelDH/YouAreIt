@@ -11,8 +11,10 @@ import App from '../lib/App';
 const settingsMod2Template = require('../templates/settingsmod2.hbs');
 
 export default () => {
+	const timerPlaceholder = localStorage.getItem('Timer');
+
 	// render the template
-	App.render(settingsMod2Template());
+	App.render(settingsMod2Template({timerPlaceholder}));
 
 	// If user not logged in, go to sign in
 	firebase.auth().onAuthStateChanged((user) => {

@@ -39,8 +39,16 @@ export default () => {
 		},
 	];
 
-	// render the template
-	App.render(settingsPlayer2Template({ players }));
+	const gamecode = localStorage.getItem('GameCode');
+
+	App.firebase.getFirestore().collection('games').doc(gamecode).get().then(function(doc) {
+		const moderator = doc.data().moderator;
+
+		// render the template
+		App.render(settingsPlayer2Template({ players, moderator }));
+	}) 
+	
+	
 
 	// If user not logged in, go to sign in
 	firebase.auth().onAuthStateChanged((user) => {

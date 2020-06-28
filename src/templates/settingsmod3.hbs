@@ -6,7 +6,7 @@
 				<p class="a-preparation-header__text">Typ in hoelang de straal moet zijn van de cirkel.</p>
 			</div>
 			<div class="m-container-radius">
-				<input class="a-radius-input" type="number" id="inputDistance" placeholder="0">
+				<input class="a-radius-input" type="number" id="inputDistance" placeholder="0" value="{{distancePlaceholder}}">
 				<span class="a-radius-text">Meter</span>
 			</div>
 			<p id="txtError" class="a-error"></p>
@@ -26,5 +26,12 @@
 				Volgende {{> arrow-right }}
 			</a>
 		</div>
+		
+		<div class="o-popup-2" id="popup-2">
+			<h3 class="a-popup-title">Weet je zeker dat je het spel wilt beginnen?</h3>
+			<button class="a-popup-button" id="deny">NEE</button>
+			<button class="a-popup-accept" id="accept">JA</button>
+		</div>
+
 	</div>
 </div>

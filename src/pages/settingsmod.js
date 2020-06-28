@@ -59,6 +59,8 @@ export default () => {
 	goBack.addEventListener('click', () => {
 		// TODO: if player clicks, delete recent made game in firebase
 		App.firebase.getFirestore().collection('games').doc(code).delete();
+		localStorage.removeItem('Distance');
+		localStorage.removeItem('Timer');
 	});
 
 	// when clicking on class, change color
