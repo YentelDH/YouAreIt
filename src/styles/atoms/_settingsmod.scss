@@ -27,9 +27,10 @@
 	@include square(rem(10px));
 	border-radius: rem(50px);
 	background-color: $title-color-primary;
+	margin: 0 6px;
 
 	&.active {
-		transform: scale(1.4);
+		width: 2rem;
 	}
 }
 

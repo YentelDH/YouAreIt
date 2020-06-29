@@ -34,6 +34,7 @@ export default () => {
 		const deny = document.getElementById('deny');
 		const accept = document.getElementById('accept');
 		const popup2 = document.getElementById('popup-2');
+		const overlay = document.getElementById('overlayLogOut');
 		const notification = new Notify();
 
 		// function to put chosen distance in local storage
@@ -65,6 +66,7 @@ export default () => {
 				txtError.innerHTML = 'Je kan de straal maximum 2 km zetten, gelieve de straal in te korten.';
 			} else {
 				popup2.style.zIndex = '3';
+				overlay.style.display = 'flex';
 				distanceStorage();
 			}
 		});
@@ -72,6 +74,7 @@ export default () => {
 		// hide popup when clicking on the cancel button
 		deny.addEventListener('click', () => {
 			popup2.style.zIndex = '-3';
+			overlay.style.display = 'none';
 		});
 
 		// when clicking on "ja": notificatie, game niet toegankelijk maken, naar map gaan

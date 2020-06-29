@@ -5,6 +5,7 @@
 		color: $text-color-primary;
 		margin: 0;
 		margin-bottom: rem(10px);
+		margin-top: 1rem;
 	}
 
 	&-button {
@@ -21,6 +22,9 @@
 		color: $primary-purple;
 		font-weight: 400;
 		background-color: $white;
-		border: none;
+		border: 0;
+		width: 200px;
+		height: rem(45px);
+		border-radius: 50px;
 	}
 }

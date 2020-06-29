@@ -123,6 +123,7 @@ export default () => {
 	const deny = document.getElementById('deny');
 	const accept = document.getElementById('accept');
 	const popup2 = document.getElementById('popup-2');
+	const overlay = document.getElementById('overlayLogOut');
 
 	// show popup when clicking on the card
 	optionsBtn.addEventListener('click', () => {
@@ -137,11 +138,13 @@ export default () => {
 	// show popup when clicking on the card
 	endGameCard.addEventListener('click', () => {
 		popup2.style.zIndex = '3';
+		overlay.style.display = 'flex';
 	});
 
 	// hide popup when clicking on the cancel button
 	deny.addEventListener('click', () => {
 		popup2.style.zIndex = '-3';
+		overlay.style.display = 'none';
 	});
 
 	// end game and go to map
