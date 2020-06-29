@@ -47,6 +47,11 @@ export default () => {
 		bar.animate(1.0);
 	}
 
+	function deleteTimer() {
+		localStorage.setItem('TimerMinutes', '00');
+		localStorage.setItem('TimerSeconds', '00');
+	}
+
 	/**
 	 * create countdown timer en puts it in html
 	 */
@@ -82,6 +87,7 @@ export default () => {
 			if (--timer < 0) {
 				countdown.textContent = 'Game over';
 				overlayEnd.style.display = 'flex';
+				deleteTimer();
 			}
 		}, 1000);
 		// function to show progress bar
@@ -140,8 +146,7 @@ export default () => {
 
 	// end game and go to map
 	accept.addEventListener('click', () => {
-		localStorage.setItem('TimerMinutes', '00');
-		localStorage.setItem('TimerSeconds', '00');
+		deleteTimer();
 		App.router.navigate('/map');
 	});
 

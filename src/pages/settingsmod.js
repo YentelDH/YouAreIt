@@ -11,7 +11,6 @@ import App from '../lib/App';
 const settingsModTemplate = require('../templates/settingsmod.hbs');
 
 export default () => {
-
   // render the template
 	App.render(settingsModTemplate());
 

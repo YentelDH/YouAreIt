@@ -32,7 +32,7 @@ export default () => {
 	/**
 	 * function to let the progressbar run with the given seconds
 	 */
-	function startBar() {
+	/* function startBar() {
 		const barSeconds = localStorage.getItem('Timer') * 60000;
 		// eslint-disable-next-line global-require
 		const ProgressBar = require('progressbar.js');
@@ -45,12 +45,12 @@ export default () => {
 			svgStyle: { width: '100%', height: '100%', margin: '0 0 100px 0' },
 		});
 		bar.animate(1.0);
-	}
+	} */
 
 	/**
 	 * create countdown timer en puts it in html
 	 */
-	function startTimer() {
+	/* function startTimer() {
 		let timer = localStorage.getItem('Timer') * 60; // turn minutes into seconds
 		let minutes;
 		let seconds;
@@ -86,8 +86,7 @@ export default () => {
 		}, 1000);
 		// function to show progress bar
 		startBar();
-	}
-
+	} */
 
   /* ********************** GOOGLE *********************** */
 
@@ -181,5 +180,5 @@ mapboxgl.accessToken = MAPBOX_API_KEY;
 					'circle-opacity': 0.1,
         },
       });
-    });
+	});
 };

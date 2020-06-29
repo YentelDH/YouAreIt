@@ -4,6 +4,7 @@
 
 /* eslint-disable no-tabs */
 /* eslint-disable indent */
+/* eslint-disable eqeqeq */
 
 import * as firebase from 'firebase/app';
 import App from '../lib/App';
@@ -44,7 +45,7 @@ export default () => {
 		function changeGameStatus() {
 			const gamecode = localStorage.getItem('GameCode');
 			App.firebase.getFirestore().collection('games').doc(gamecode).update({
-				status: false
+				status: false,
 			});
 		}
 
@@ -60,7 +61,7 @@ export default () => {
 			// Error giving
 			if (inputDistance.value == 0) {
 				txtError.innerHTML = 'Gelieve in te geven hoelang de straal moet zijn.';
-			} else if (inputDistance.value > 2000) { 
+			} else if (inputDistance.value > 2000) {
 				txtError.innerHTML = 'Je kan de straal maximum 2 km zetten, gelieve de straal in te korten.';
 			} else {
 				popup2.style.zIndex = '3';

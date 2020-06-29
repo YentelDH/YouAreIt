@@ -4,6 +4,7 @@
 
 /* eslint-disable no-tabs */
 /* eslint-disable indent */
+/* eslint-disable eqeqeq */
 
 import * as firebase from 'firebase/app';
 import App from '../lib/App';
@@ -42,6 +43,6 @@ export default () => {
 		} else {
 			minutesStorage();
 			App.router.navigate('/settingsmod3');
-		}	
+		}
 	});
 };

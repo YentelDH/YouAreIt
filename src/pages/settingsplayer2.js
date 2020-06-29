@@ -4,6 +4,7 @@
 
 /* eslint-disable no-tabs */
 /* eslint-disable indent */
+/* eslint-disable eqeqeq */
 
 import * as firebase from 'firebase/app';
 import App from '../lib/App';
@@ -11,17 +12,17 @@ import App from '../lib/App';
 const settingsPlayer2Template = require('../templates/settingsplayer2.hbs');
 
 export default () => {
-
 	const gamecode = localStorage.getItem('GameCode');
 
 	// Give name of moderator to html
-	App.firebase.getFirestore().collection('games').doc(gamecode).get().then(function(doc) {
-		const moderator = doc.data().moderator;
+	App.firebase.getFirestore().collection('games').doc(gamecode).get()
+	.then((doc) => {
+		const moderatorName = doc.data().moderator;
 
 		// render the template
-		App.render(settingsPlayer2Template({ moderator }));
-	}) 
-	
+		App.render(settingsPlayer2Template({ moderatorName }));
+	});
+
 	function renderPlayers(doc) {
 		const playerList = document.getElementById('player-list');
 
@@ -55,9 +56,8 @@ export default () => {
 		} else {
 			playerImage.src = 'https://pwco.com.sg/wp-content/uploads/2020/05/Generic-Profile-Placeholder-v3.png';
 		}
-		
 	}
-	
+
 /* 	App.firebase.getFirestore().collection('games').doc(gamecode)
 	.collection('players').get().then((snapshot) => {
 		snapshot.docs.forEach(doc => {
@@ -66,31 +66,30 @@ export default () => {
 	})
  */
 	// Function when game has started, go to map
-	App.firebase.getFirestore().collection('games').doc(gamecode)
-	.collection('players').onSnapshot(snapshot => {
+	App.firebase.getFirestore().collection('games')
+	.doc(gamecode).collection('players')
+	.onSnapshot((snapshot) => {
 		const playerList = document.getElementById('player-list');
 		const changes = snapshot.docChanges();
-		changes.forEach(change => {
+		changes.forEach((change) => {
 			// when a player has been added, show it in html
 			if (change.type == 'added') {
 				renderPlayers(change.doc);
 			// when a player has been removed, delete it from html
 			} else if (change.type == 'removed') {
-				const listItem = playerList.querySelector('[data-id=' + change.doc.id + ']');
-				playerList.removeChild(listItem); 
+				const listItem = playerList.querySelector(`[data-id=${change.doc.id}]`);
+				playerList.removeChild(listItem);
 			}
-		})
-	})
+		});
+	});
 
 	/* App.firebase.getFirestore().collection('games').doc(gamecode).get().then(function(doc) {
 		if (doc.data().started == true) {
 			App.router.navigate('/mapplayer');
 		} else {
-			
+
 		}
 	})  */
-
-
 
 	// If user not logged in, go to sign in
 	firebase.auth().onAuthStateChanged((user) => {

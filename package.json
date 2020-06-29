@@ -5,7 +5,7 @@
   "description": "Full Code Template for the course Mobile Development I",
   "scripts": {
     "dev": "webpack-dev-server --mode development --open",
-    "build": "webpack --mode production --config ./webpack.config.js "
+    "build": "webpack --mode production --config ./webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -60,6 +60,7 @@
   },
   "dependencies": {
     "firebase": "^7.15.5",
+    "google-auth-library": "^6.0.2",
     "handlebars": "^4.7.6",
     "mapbox-gl": "^1.11.0",
     "navigo": "^7.1.2",
