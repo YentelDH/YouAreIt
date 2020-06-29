@@ -34,28 +34,28 @@ export default () => {
 
     // Login event
     btnLogin.addEventListener('click', () => {
-			// Get email and password
-			const email = txtEmail.value;
-			const password = txtPassword.value;
-			//  Sign in
-			auth.signInWithEmailAndPassword(email, password)
-				.then(() => {
-					App.router.navigate('/map');
-				})
-				.catch((e) => {
-					if (e.code === 'auth/wrong-password') {
-						txtError.innerHTML = 'Dit wachtwoord is onjuist, probeer nog eens.';
-					} else if (password === '' || email === '') {
-						txtError.innerHTML = 'Gelieve alle velden in te vullen.';
-					} else {
-						txtError.innerHTML = 'De velden zijn onjuist ingevuld, probeer nog eens.';
-					}
-				});
+		// Get email and password
+		const email = txtEmail.value;
+		const password = txtPassword.value;
+		//  Sign in
+		auth.signInWithEmailAndPassword(email, password)
+		.then(() => {
+			App.router.navigate('/map');
+		})
+		.catch((e) => {
+			if (e.code === 'auth/wrong-password') {
+				txtError.innerHTML = 'Dit wachtwoord is onjuist, probeer nog eens.';
+			} else if (password === '' || email === '') {
+				txtError.innerHTML = 'Gelieve alle velden in te vullen.';
+			} else {
+				txtError.innerHTML = 'De velden zijn onjuist ingevuld, probeer nog eens.';
+			}
+		});
     });
 
     // Google login event
     btnGoogle.addEventListener('click', () => {
-				const provider = new firebase.auth.GoogleAuthProvider();
+		const provider = new firebase.auth.GoogleAuthProvider();
         auth.signInWithPopup(provider)
             .then(() => {
 				App.router.navigate('/intro');

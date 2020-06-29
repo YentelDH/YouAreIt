@@ -48,6 +48,13 @@ export default () => {
 			});
 		}
 
+		function activeGame() {
+			const gamecode = localStorage.getItem('GameCode');
+			App.firebase.getFirestore().collection('games').doc(gamecode).update({
+				started: true,
+			});
+		}
+
 		// If you click the next button
 		buttonMod.addEventListener('click', () => {
 			// Error giving
@@ -70,6 +77,7 @@ export default () => {
 		accept.addEventListener('click', () => {
 			notification.notifyModerator();
 			changeGameStatus();
+			activeGame();
 			localStorage.setItem('start game', 'ready');
 			App.router.navigate('/mapmoderator');
 		});

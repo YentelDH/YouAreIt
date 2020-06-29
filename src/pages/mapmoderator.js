@@ -91,20 +91,12 @@ export default () => {
 	/* ********************** START GAME *********************** */
 	const overlayStart = document.getElementById('startgame-overlay');
 
-	function activeGame() {
-		const gamecode = localStorage.getItem('GameCode');
-		App.firebase.getFirestore().collection('games').doc(gamecode).update({
-			started: true,
-		});
-	}
-
 	// if clicked on the "start game" popup then hide popup and tell the game has started
 	overlayStart.addEventListener('click', () => {
 		overlayStart.style.display = 'none';
 		localStorage.setItem('start game', 'done');
 		// the timer starts when clicking on overlay
 		startTimer();
-		activeGame();
 	});
 
 	const startGame = localStorage.getItem('start game');
@@ -123,6 +115,7 @@ export default () => {
 
 	const endGameCard = document.getElementById('endGameCard');
 	const deny = document.getElementById('deny');
+	const accept = document.getElementById('accept');
 	const popup2 = document.getElementById('popup-2');
 
 	// show popup when clicking on the card
@@ -143,6 +136,13 @@ export default () => {
 	// hide popup when clicking on the cancel button
 	deny.addEventListener('click', () => {
 		popup2.style.zIndex = '-3';
+	});
+
+	// end game and go to map
+	accept.addEventListener('click', () => {
+		localStorage.setItem('TimerMinutes', '00');
+		localStorage.setItem('TimerSeconds', '00');
+		App.router.navigate('/map');
 	});
 
   /* ********************** GOOGLE *********************** */

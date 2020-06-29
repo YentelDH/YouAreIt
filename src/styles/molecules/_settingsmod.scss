@@ -13,12 +13,13 @@
 	overflow: hidden;
 	border-radius: rem(50px);
 	border: 3px solid $white;
-	@include shadow(8px 5px 40px 9px rgba(112, 112, 112, 0.15));
+	@include shadow(8px 5px 40px 9px rgba(112, 112, 112, 0.1));
 	@include square(rem(70px));
 	position: relative;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	margin-right: 1rem;
 }
 
 .m-dots {

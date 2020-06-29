@@ -96,7 +96,7 @@
 	padding: rem(20px) rem(30px);
 	border-radius: rem(13px);
 	background-color: $background-color-primary;
-	@include shadow(8px 5px 40px 9px rgba(112, 112, 112, 0.15));
+	@include shadow(8px 5px 40px 9px rgba(112, 112, 112, 0.1));
 	width: 90vw;
 }
 

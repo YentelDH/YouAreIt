@@ -27,6 +27,7 @@ export default () => {
 
 		const listItem = document.createElement('li');
 		listItem.classList.add('o-container-player');
+		listItem.setAttribute('data-id', doc.id);
 
 		const playerFrame = document.createElement('div');
 		playerFrame.classList.add('m-player-frame');
@@ -49,17 +50,47 @@ export default () => {
 		playerInfo.appendChild(playerName); // div 1 > img
 
 		playerName.textContent = doc.data().name;
-		playerImage.src = doc.data().image;
+		if (doc.data().image) {
+			playerImage.src = doc.data().image;
+		} else {
+			playerImage.src = 'https://pwco.com.sg/wp-content/uploads/2020/05/Generic-Profile-Placeholder-v3.png';
+		}
+		
 	}
 	
-	App.firebase.getFirestore().collection('games').doc(gamecode)
+/* 	App.firebase.getFirestore().collection('games').doc(gamecode)
 	.collection('players').get().then((snapshot) => {
 		snapshot.docs.forEach(doc => {
 			renderPlayers(doc);
 		})
 	})
-
+ */
 	// Function when game has started, go to map
+	App.firebase.getFirestore().collection('games').doc(gamecode)
+	.collection('players').onSnapshot(snapshot => {
+		const playerList = document.getElementById('player-list');
+		const changes = snapshot.docChanges();
+		changes.forEach(change => {
+			// when a player has been added, show it in html
+			if (change.type == 'added') {
+				renderPlayers(change.doc);
+			// when a player has been removed, delete it from html
+			} else if (change.type == 'removed') {
+				const listItem = playerList.querySelector('[data-id=' + change.doc.id + ']');
+				playerList.removeChild(listItem); 
+			}
+		})
+	})
+
+	/* App.firebase.getFirestore().collection('games').doc(gamecode).get().then(function(doc) {
+		if (doc.data().started == true) {
+			App.router.navigate('/mapplayer');
+		} else {
+			
+		}
+	})  */
+
+
 
 	// If user not logged in, go to sign in
 	firebase.auth().onAuthStateChanged((user) => {
