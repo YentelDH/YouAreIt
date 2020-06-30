@@ -202,7 +202,7 @@ mapboxgl.accessToken = MAPBOX_API_KEY;
 		zoom: 16, // starting zoom
 	});
 
-	const marker = new mapboxgl.Marker()
+	new mapboxgl.Marker()
 		.setLngLat([userLon, userLat])
 		.addTo(map);
 
@@ -230,7 +230,7 @@ mapboxgl.accessToken = MAPBOX_API_KEY;
             },
           }],
         },
-			});
+	});
 
       // How big, color the circle has to be
       map.addLayer({

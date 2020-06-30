@@ -93,6 +93,6 @@ export default () => {
 		localStorage.removeItem('Timer');
 		setDocument();
 		setCollection();
-		setPlayer()
+		setPlayer();
 	});
 };

@@ -4,6 +4,7 @@
 
 /* eslint-disable no-tabs */
 /* eslint-disable indent */
+/* eslint-disable eqeqeq */
 
 import * as firebase from 'firebase/app';
 import App from '../lib/App';
@@ -12,8 +13,8 @@ import Notify from '../classes/Notifications';
 const settingsModTemplate = require('../templates/settingsmod.hbs');
 
 export default () => {
-  	// render the template
-	App.render(settingsModTemplate( ));
+	// render the template
+	App.render(settingsModTemplate());
 
 	// If user not logged in, go to sign in
 	firebase.auth().onAuthStateChanged((user) => {
@@ -38,9 +39,9 @@ export default () => {
 	const popup3 = document.getElementById('popup-3');
 	const overlayDelete = document.getElementById('overlayDelete');
 
-	const notification = new Notify();
-
 	const gamecode = localStorage.getItem('GameCode');
+
+	const notification = new Notify();
 
 	// shows code of game in html
 	gameCode.textContent = code;
@@ -52,7 +53,7 @@ export default () => {
 		const image = document.getElementById('listItemImg');
 
 		name.textContent = doc.data().name;
-		
+
 		if (doc.data().image) {
 			image.src = doc.data().image;
 		} else {
@@ -62,12 +63,14 @@ export default () => {
 		accept2.addEventListener('click', (e) => {
 			e.stopPropagation();
 			const id = listItem.getAttribute('data-id');
-			App.firebase.getFirestore().collection('games').doc(code)
-			.collection('players').doc(id).delete();
-	
+			App.firebase.getFirestore().collection('games')
+			.doc(code).collection('players')
+			.doc(id)
+			.delete();
+
 			overlayDelete.style.display = 'none';
 			popup3.style.zIndex = '-3';
-		})
+		});
 	}
 
 	// Real time listener
@@ -89,7 +92,6 @@ export default () => {
 	});
 
 	function activeGame() {
-		const gamecode = localStorage.getItem('GameCode');
 		App.firebase.getFirestore().collection('games').doc(gamecode).update({
 			started: true,
 			status: false,
@@ -112,13 +114,12 @@ export default () => {
 		overlayDelete.style.display = 'none';
 	});
 
-
 	/*
 	* GO NEXT BUTTON
 	*/
 
 	// If you click the next button
-	nextBtn.addEventListener('click', (e) => {
+	nextBtn.addEventListener('click', () => {
 			popup2.style.zIndex = '3';
 			overlay.style.display = 'flex';
 	});

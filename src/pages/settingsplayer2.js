@@ -79,13 +79,12 @@ export default () => {
 
 	// @TODO: Go to playermap when game has started
 	// This isnt real time, only works when refreshing page
-	App.firebase.getFirestore().collection('games').doc(gamecode).get().then((snapshot) => {
+	App.firebase.getFirestore().collection('games').doc(gamecode).get()
+	.then((snapshot) => {
 		if (snapshot.data().started == true) {
 			App.router.navigate('/mapplayer');
-		} else {
-
 		}
-	})
+	});
 
 	// If user not logged in, go to sign in
 	firebase.auth().onAuthStateChanged((user) => {
