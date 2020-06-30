@@ -202,21 +202,54 @@ mapboxgl.accessToken = MAPBOX_API_KEY;
 		zoom: 16, // starting zoom
 	});
 
-	new mapboxgl.Marker()
+	/* new mapboxgl.Marker()
 		.setLngLat([userLon, userLat])
-		.addTo(map);
+		.addTo(map); */
 
-	// Add geolocate control to the map.
-	map.addControl(
-		new mapboxgl.GeolocateControl({
-			positionOptions: {
-				enableHighAccuracy: true,
-			},
-			trackUserLocation: true,
-		}),
-	);
+		var url = 'https://wanderdrone.appspot.com/';
+		map.on('load', function() {
+			var request = new XMLHttpRequest();
+			window.setInterval(function() {
+				// make a GET request to parse the GeoJSON at the url
+				request.open('GET', url, true);
+				request.onload = function() {
+					if (this.status >= 200 && this.status < 400) {
+						// retrieve the JSON from the response
+						var json = JSON.parse(this.response);
+						console.log(json);
+						
+						// update the drone symbol's location on the map
+						map.getSource('drone').setData(json);
+						
+						// fly the map to the drone's current location
+						map.flyTo({
+							center: json.geometry.coordinates,
+							speed: 0.5
+						});
+					}
+				};
+				request.send();
+			}, 10000);
+		 
+		map.addSource('drone', { type: 'geojson', data: url });
 
-	// Where the circle has to be
+		map.addLayer({
+			'id': 'drone',
+			'type': 'symbol',
+			'source': 'drone',
+			'layout': {
+				'icon-image': 'rocket-15'
+			}
+		});
+
+		navigator.geolocation.getCurrentPosition((position) => {
+			const lat = position.coords.latitude;
+			const lon = position.coords.longitude;
+
+			console.log(lat, lon)
+		});
+
+	/* // Where the circle has to be
     map.on('load', () => {
       map.addSource('source_circle_500', {
         type: 'geojson',
@@ -230,7 +263,7 @@ mapboxgl.accessToken = MAPBOX_API_KEY;
             },
           }],
         },
-	});
+	}); */
 
       // How big, color the circle has to be
       map.addLayer({
