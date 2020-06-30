@@ -25,7 +25,10 @@
 	padding: rem(20px) rem(30px);
 }
 
-/******************************* Settings Moderator 2 *******************************/
+.o-popup-2 {
+	margin-top: 30vh;
 
-
-/******************************* Settings Moderator 3 *******************************/
+	&.mapmoderator {
+		margin-top: 0;
+	}
+}

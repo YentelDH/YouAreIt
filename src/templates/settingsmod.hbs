@@ -9,44 +9,57 @@
 				<p class="a-preparation-header__text">Laat je vrienden deze code invoeren: <b class="a-gameCode" id="gameCode"></b></p>
 			</div>
 
-
-			{{!-- <ul class="o-preparation-players">
-				<li class="o-container-player" tabindex="-1">
-						<div class="m-player-frame">
-							<img src="../assets/icons/logo/more.svg" alt="avatar" class="a-player-more">
-						</div>
-						<div class="m-player-info">
-							<p class="a-player-name">Voeg speler toe</p>
-							<p class="a-player-code">Tik hier voor toe te voegen.</p>
-						</div>
-					</li>
-				{{#each players}}
-					<li class="o-container-player" tabindex="-1">
-						<div class="m-player-frame">
-							<img src="../assets/images/example.jpg" alt="avatar" class="a-player-picture">
-						</div>
-						<div class="m-player-info">
-							<p class="a-player-name">{{name}}</p>
-							<p class="a-player-code">#{{code}}</p>
-						</div>
-					</li>
-				{{/each}}
-			</ul> --}}
+			<ul class="o-preparation-players" id="playerList">
+				{{!-- <li class="o-container-player">
+					<div class="m-player-frame">
+						<img src="../assets/icons/logo/more.svg" alt="avatar" class="a-player-more">
+					</div>
+					<div class="m-player-info">
+						<p class="a-player-name">Voeg speler toe</p>
+						<p class="a-player-code">Tik hier voor toe te voegen.</p>
+					</div>
+				</li> --}}
+				<li class="o-container-player" id="listItem" >
+					<div class="m-player-frame">
+						<img id="listItemImg" alt="avatar" class="a-player-picture">
+					</div>
+					<div class="m-player-info">
+						<p class="a-player-name" id="listItemName"></p>
+					</div>
+					<button class="m-player-delete" id="deleteBtn">
+						<i class="fa fa-trash-o" aria-hidden="true" style="font-size:1.8rem"></i>
+					</button>
+				</li>
+			</ul>
 		</div>
 
 		<div class="m-dots">
-			<a href="#" data-navigo> <div class="a-dot active"></div></a>
+			<a href="settingsmod3" data-navigo> <div class="a-dot"></div></a>
 			<a href="/settingsmod2" data-navigo> <div class="a-dot"></div></a>
-			<a href="/settingsmod3" data-navigo> <div class="a-dot"></div></a>
+			<a href="#" data-navigo> <div class="a-dot active"></div></a>
 		</div>
 
 		<div class="o-container-buttons">
-			<a href="/startgame" id="goBack" class="m-button-rectangle color left" data-navigo>
+			<a href="/settingsmod2" class="m-button-rectangle color left" data-navigo>
 				{{> arrow-left }} Terug
 			</a>
-			<a href="/settingsmod2" class="m-button-rectangle color right" data-navigo>
+			<a id="nextBtn" class="m-button-rectangle color right">
 				Volgende {{> arrow-right }}
 			</a>
+		</div>
+
+		<div class="o-overlay-end" id="overlayLogOut"></div>
+		<div class="o-popup-2" id="popup-2">
+			<h3 class="a-popup-title">Weet je zeker dat je het spel wilt beginnen?</h3>
+			<button class="a-popup-button" id="deny">NEE</button>
+			<button class="a-popup-accept" id="accept">JA</button>
+		</div>
+		
+		<div class="o-overlay-end" id="overlayDelete"></div>
+		<div class="o-popup-2" id="popup-3">
+			<h3 class="a-popup-title">Weet je zeker dat je deze speler wilt verwijderen?</h3>
+			<button class="a-popup-button" id="deny2">NEE</button>
+			<button class="a-popup-accept" id="accept2">JA</button>
 		</div>
 
 	</div>

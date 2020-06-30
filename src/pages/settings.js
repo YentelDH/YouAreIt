@@ -48,9 +48,14 @@ export default () => {
 			user.updateProfile({
 				displayName: name,
 			});
-		} else if (user.photoURLn + user.displayName) {
-			newImg.src = user.photoURL;
+		} else if (user.displayName) {
 			newName.innerHTML = user.displayName;
+		}
+
+		if (user.photoURL == null) {
+			newImg.src = 'https://pwco.com.sg/wp-content/uploads/2020/05/Generic-Profile-Placeholder-v3.png';
+		} else {
+			newImg.src = user.photoURL;
 		}
 	});
 

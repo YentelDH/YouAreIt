@@ -29,7 +29,6 @@ export default () => {
 
 	function setPlayer() {
 		firebase.auth().onAuthStateChanged((user) => {
-			const username = user.displayName;
 			const gamecode = inputGamecode.value;
 
 			navigator.geolocation.getCurrentPosition((position) => {
@@ -54,7 +53,7 @@ export default () => {
 
 			App.firebase.getFirestore().collection('games').doc(gamecode)
 			.collection('players')
-			.doc(username)
+			.doc()
 			.set(player)
 			.then(() => {
 				console.log('Je bent aan de game toegevoegd');

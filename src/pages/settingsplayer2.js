@@ -51,6 +51,7 @@ export default () => {
 		playerInfo.appendChild(playerName); // div 1 > img
 
 		playerName.textContent = doc.data().name;
+
 		if (doc.data().image) {
 			playerImage.src = doc.data().image;
 		} else {
@@ -58,14 +59,7 @@ export default () => {
 		}
 	}
 
-/* 	App.firebase.getFirestore().collection('games').doc(gamecode)
-	.collection('players').get().then((snapshot) => {
-		snapshot.docs.forEach(doc => {
-			renderPlayers(doc);
-		})
-	})
- */
-	// Function when game has started, go to map
+	// Function to render real time players in html
 	App.firebase.getFirestore().collection('games')
 	.doc(gamecode).collection('players')
 	.onSnapshot((snapshot) => {
@@ -83,13 +77,15 @@ export default () => {
 		});
 	});
 
-	/* App.firebase.getFirestore().collection('games').doc(gamecode).get().then(function(doc) {
-		if (doc.data().started == true) {
+	// @TODO: Go to playermap when game has started
+	// This isnt real time, only works when refreshing page
+	App.firebase.getFirestore().collection('games').doc(gamecode).get().then((snapshot) => {
+		if (snapshot.data().started == true) {
 			App.router.navigate('/mapplayer');
 		} else {
 
 		}
-	})  */
+	})
 
 	// If user not logged in, go to sign in
 	firebase.auth().onAuthStateChanged((user) => {

@@ -41,7 +41,7 @@ export default () => {
 		if (user.photoURL) {
 			newImg.src = user.photoURL;
 		} else {
-			newImg.src = '../../public/images/example.efe0dbc.jpg';
+			newImg.src = 'https://pwco.com.sg/wp-content/uploads/2020/05/Generic-Profile-Placeholder-v3.png';
 		}
 	});
 

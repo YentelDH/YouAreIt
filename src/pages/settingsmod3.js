@@ -8,7 +8,6 @@
 
 import * as firebase from 'firebase/app';
 import App from '../lib/App';
-import Notify from '../classes/Notifications';
 
 const settingsMod3Template = require('../templates/settingsmod3.hbs');
 
@@ -25,17 +24,15 @@ export default () => {
 			}
 		});
 
-		// Constanten
-		const buttonMod = document.getElementById('btnModerator');
+		// Constants
+		const backBtn = document.getElementById('backBtn');
+		const nextBtn = document.getElementById('nextBtn');
+
 		const inputDistance = document.getElementById('inputDistance');
 
-		const txtError = document.getElementById('txtError');
+		const code = localStorage.getItem('GameCode');
 
-		const deny = document.getElementById('deny');
-		const accept = document.getElementById('accept');
-		const popup2 = document.getElementById('popup-2');
-		const overlay = document.getElementById('overlayLogOut');
-		const notification = new Notify();
+		const txtError = document.getElementById('txtError');
 
 		// function to put chosen distance in local storage
 		function distanceStorage() {
@@ -43,46 +40,29 @@ export default () => {
 			localStorage.setItem('Distance', distance);
 		}
 
-		function changeGameStatus() {
-			const gamecode = localStorage.getItem('GameCode');
-			App.firebase.getFirestore().collection('games').doc(gamecode).update({
-				status: false,
-			});
-		}
+		/*
+		* GO BACK BUTTON
+		*/
+		// Delete game in firebase
+		backBtn.addEventListener('click', () => {
+			localStorage.removeItem('Distance');
+			localStorage.removeItem('Timer');
+			App.firebase.getFirestore().collection('games').doc(code).delete();
+		});
 
-		function activeGame() {
-			const gamecode = localStorage.getItem('GameCode');
-			App.firebase.getFirestore().collection('games').doc(gamecode).update({
-				started: true,
-			});
-		}
-
+		/*
+		* GO NEXT BUTTON
+		*/
 		// If you click the next button
-		buttonMod.addEventListener('click', () => {
+		nextBtn.addEventListener('click', () => {
 			// Error giving
-			if (inputDistance.value == 0) {
+			if (inputDistance.value <= 0) {
 				txtError.innerHTML = 'Gelieve in te geven hoelang de straal moet zijn.';
 			} else if (inputDistance.value > 2000) {
 				txtError.innerHTML = 'Je kan de straal maximum 2 km zetten, gelieve de straal in te korten.';
 			} else {
-				popup2.style.zIndex = '3';
-				overlay.style.display = 'flex';
 				distanceStorage();
+				App.router.navigate('/settingsmod2');
 			}
-		});
-
-		// hide popup when clicking on the cancel button
-		deny.addEventListener('click', () => {
-			popup2.style.zIndex = '-3';
-			overlay.style.display = 'none';
-		});
-
-		// when clicking on "ja": notificatie, game niet toegankelijk maken, naar map gaan
-		accept.addEventListener('click', () => {
-			notification.notifyModerator();
-			changeGameStatus();
-			activeGame();
-			localStorage.setItem('start game', 'ready');
-			App.router.navigate('/mapmoderator');
 		});
 };

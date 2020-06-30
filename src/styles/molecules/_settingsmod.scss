@@ -35,6 +35,14 @@
 
 	&-info {
 		margin-left: rem(10px);
+		width: 65vw;
+	}
+
+	&-delete {
+		border: none;
+		color: $text-color-primary;
+		background-color: none;
+		background: none;
 	}
 }
 

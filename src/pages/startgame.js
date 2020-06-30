@@ -23,7 +23,7 @@ export default () => {
 	const playerCard = document.getElementById('playerCard');
 	const moderatorCard = document.getElementById('moderatorCard');
 
-	/**
+	/*
    * Function to make a collection of multiple games
    */
   function setDocument() {
@@ -45,6 +45,43 @@ export default () => {
 		});
   }
 
+	/*
+   	* Function to set player in game
+   */
+  function setPlayer() {
+	firebase.auth().onAuthStateChanged((user) => {
+		const gamecode = localStorage.getItem('GameCode');
+
+		navigator.geolocation.getCurrentPosition((position) => {
+			const lat = position.coords.latitude;
+			const lon = position.coords.longitude;
+
+			localStorage.setItem('Latitude', lat);
+			localStorage.setItem('Longitude', lon);
+		});
+
+		const lat = localStorage.getItem('Latitude');
+		const lon = localStorage.getItem('Longitude');
+
+		const player = {
+			location: {
+				latitude: lat,
+				longitude: lon,
+			},
+			image: user.photoURL,
+			name: user.displayName,
+		};
+
+		App.firebase.getFirestore().collection('games').doc(gamecode)
+		.collection('players')
+		.doc()
+		.set(player)
+		.then(() => {
+			console.log('Je bent aan de game toegevoegd');
+		});
+	});
+}
+
 	// Setting boolean in localstorage to know if the player is a moderator or a normal player
 	playerCard.addEventListener('click', () => {
 		localStorage.setItem('Moderator', false);
@@ -56,5 +93,6 @@ export default () => {
 		localStorage.removeItem('Timer');
 		setDocument();
 		setCollection();
+		setPlayer()
 	});
 };

@@ -202,16 +202,21 @@ mapboxgl.accessToken = MAPBOX_API_KEY;
 		zoom: 16, // starting zoom
 	});
 
-		// Add geolocate control to the map.
-		map.addControl(
-			new mapboxgl.GeolocateControl({
-				positionOptions: {
-					enableHighAccuracy: true,
-				},
-				trackUserLocation: true,
-			}),
-		);
-		// Where the circle has to be
+	const marker = new mapboxgl.Marker()
+		.setLngLat([userLon, userLat])
+		.addTo(map);
+
+	// Add geolocate control to the map.
+	map.addControl(
+		new mapboxgl.GeolocateControl({
+			positionOptions: {
+				enableHighAccuracy: true,
+			},
+			trackUserLocation: true,
+		}),
+	);
+
+	// Where the circle has to be
     map.on('load', () => {
       map.addSource('source_circle_500', {
         type: 'geojson',
