@@ -125,6 +125,9 @@ export default () => {
 	const popup2 = document.getElementById('popup-2');
 	const overlay = document.getElementById('overlayLogOut');
 
+	const gamecode = localStorage.getItem('GameCode');
+
+
 	// show popup when clicking on the card
 	optionsBtn.addEventListener('click', () => {
 		popup.style.zIndex = '2';
@@ -206,40 +209,16 @@ mapboxgl.accessToken = MAPBOX_API_KEY;
 		.setLngLat([userLon, userLat])
 		.addTo(map);
 
-	/*
-		// Where the circle has to be
-    map.on('load', () => {
-      map.addSource('source_circle_500', {
-        type: 'geojson',
-        data: {
-          type: 'FeatureCollection',
-          features: [{
-            type: 'Feature',
-            geometry: {
-              type: 'Point',
-              coordinates: [userLon, userLat],
-            },
-          }],
-        },
+	// Loops through all the players
+	App.firebase.getFirestore().collection('games')
+	.doc(gamecode).collection('players')
+	.onSnapshot((snapshot) => {
+		const changes = snapshot.docChanges();
+		changes.forEach((change) => {
+			new mapboxgl.Marker()
+				.setLngLat([change.doc.data().location.longitude, change.doc.data().location.latitude])
+				.addTo(map);
+		});
 	});
 
-      // How big, color the circle has to be
-      map.addLayer({
-        id: 'circle500',
-        type: 'circle',
-        source: 'source_circle_500',
-        paint: {
-          'circle-radius': {
-            stops: [
-				[0, 0],
-				// eslint-disable-next-line no-mixed-operators
-              [20, (distance, (distance / 0.075 / Math.cos(userLat * Math.PI / 180)))],
-            ],
-            base: 2,
-          },
-          'circle-color': 'purple',
-					'circle-opacity': 0.1,
-        },
-      });
-    }); */
 };
