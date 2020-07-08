@@ -24,14 +24,19 @@ export default () => {
 		}
 	});
 
+	// Constants
 	const inputMinutes = document.getElementById('inputMinutes');
 	const submitMinutes = document.getElementById('submitMinutes');
 	const txtError = document.getElementById('txtError');
+	const gamecode = localStorage.getItem('GameCode');
 
 	// function to put chosen timer in local storage
 	function minutesStorage() {
 		const minutes = inputMinutes.value;
 		localStorage.setItem('Timer', minutes);
+		App.firebase.getFirestore().collection('games').doc(gamecode).update({
+			time: minutes,
+		});
 	}
 
 	submitMinutes.addEventListener('click', () => {

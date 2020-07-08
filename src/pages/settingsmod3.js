@@ -5,6 +5,7 @@
 /* eslint-disable no-tabs */
 /* eslint-disable indent */
 /* eslint-disable eqeqeq */
+/* eslint-disable object-shorthand */
 
 import * as firebase from 'firebase/app';
 import App from '../lib/App';
@@ -30,7 +31,7 @@ export default () => {
 
 		const inputDistance = document.getElementById('inputDistance');
 
-		const code = localStorage.getItem('GameCode');
+		const gamecode = localStorage.getItem('GameCode');
 
 		const txtError = document.getElementById('txtError');
 
@@ -38,6 +39,9 @@ export default () => {
 		function distanceStorage() {
 			const distance = inputDistance.value;
 			localStorage.setItem('Distance', distance);
+			App.firebase.getFirestore().collection('games').doc(gamecode).update({
+				distance: distance,
+			});
 		}
 
 		/*
@@ -47,7 +51,7 @@ export default () => {
 		backBtn.addEventListener('click', () => {
 			localStorage.removeItem('Distance');
 			localStorage.removeItem('Timer');
-			App.firebase.getFirestore().collection('games').doc(code).delete();
+			App.firebase.getFirestore().collection('games').doc(gamecode).delete();
 		});
 
 		/*

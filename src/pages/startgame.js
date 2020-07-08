@@ -20,6 +20,7 @@ export default () => {
 		}
 	});
 
+	// Contstants
 	const playerCard = document.getElementById('playerCard');
 	const moderatorCard = document.getElementById('moderatorCard');
 
@@ -30,17 +31,29 @@ export default () => {
 		/* thanks to Silver Ringvee: https://stackoverflow.com/users/4769218/silver-ringvee */
 		const randomNumber = Math.random().toString(36).substr(2, 5);
 		localStorage.setItem('GameCode', randomNumber);
-		App.firebase.getFirestore().collection('games').doc(randomNumber).set({
-		});
-  }
+		console.log(randomNumber);
 
-  function setCollection() {
 		firebase.auth().onAuthStateChanged((user) => {
-			const gamecode = localStorage.getItem('GameCode');
-			App.firebase.getFirestore().collection('games').doc(gamecode).set({
-				moderator: user.displayName,
-				status: true,
-				started: false,
+			navigator.geolocation.getCurrentPosition((position) => {
+				// object of the game with info moderator
+				const game = {
+					moderator: {
+						location: {
+							latitude: position.coords.latitude,
+							longitude: position.coords.longitude,
+						},
+						image: user.photoURL,
+						name: user.displayName,
+					},
+					status: true,
+					started: false,
+					distance: null,
+					time: null,
+				};
+
+				// putting object in the collection games
+				App.firebase.getFirestore().collection('games').doc(randomNumber)
+				.set(game);
 			});
 		});
   }
@@ -49,38 +62,39 @@ export default () => {
    	* Function to set player in game
    */
   function setPlayer() {
-	firebase.auth().onAuthStateChanged((user) => {
 		const gamecode = localStorage.getItem('GameCode');
+		console.log(gamecode);
+		firebase.auth().onAuthStateChanged((user) => {
+			navigator.geolocation.getCurrentPosition((position) => {
+				const lat = position.coords.latitude;
+				const lon = position.coords.longitude;
 
-		navigator.geolocation.getCurrentPosition((position) => {
-			const lat = position.coords.latitude;
-			const lon = position.coords.longitude;
+				// object of player/user
+				const player = {
+					location: {
+						latitude: lat,
+						longitude: lon,
+					},
+					image: user.photoURL,
+					name: user.displayName,
+				};
 
-			localStorage.setItem('Latitude', lat);
-			localStorage.setItem('Longitude', lon);
+				// setting object/player in the collection players
+				App.firebase.getFirestore().collection('games').doc(gamecode)
+				.collection('players')
+				.doc()
+				.set(player)
+				.then(() => {
+					console.log('Je bent aan de game toegevoegd');
+				});
+			});
 		});
+	}
 
-		const lat = localStorage.getItem('Latitude');
-		const lon = localStorage.getItem('Longitude');
-
-		const player = {
-			location: {
-				latitude: lat,
-				longitude: lon,
-			},
-			image: user.photoURL,
-			name: user.displayName,
-		};
-
-		App.firebase.getFirestore().collection('games').doc(gamecode)
-		.collection('players')
-		.doc()
-		.set(player)
-		.then(() => {
-			console.log('Je bent aan de game toegevoegd');
-		});
-	});
-}
+	function resetLocal() {
+		localStorage.removeItem('Distance');
+		localStorage.removeItem('Timer');
+	}
 
 	// Setting boolean in localstorage to know if the player is a moderator or a normal player
 	playerCard.addEventListener('click', () => {
@@ -89,10 +103,8 @@ export default () => {
 
 	moderatorCard.addEventListener('click', () => {
 		localStorage.setItem('Moderator', true);
-		localStorage.removeItem('Distance');
-		localStorage.removeItem('Timer');
+		resetLocal();
 		setDocument();
-		setCollection();
 		setPlayer();
 	});
 };

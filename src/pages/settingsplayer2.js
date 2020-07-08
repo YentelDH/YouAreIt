@@ -77,13 +77,24 @@ export default () => {
 		});
 	});
 
-	// @TODO: Go to playermap when game has started
-	// This isnt real time, only works when refreshing page
-	App.firebase.getFirestore().collection('games').doc(gamecode).get()
-	.then((snapshot) => {
-		if (snapshot.data().started == true) {
-			App.router.navigate('/mapplayer');
-		}
+	// When the moderator started the game, go to map
+	App.firebase.getFirestore().collection('games')
+	.onSnapshot((snapshot) => {
+		const changes = snapshot.docChanges();
+		changes.forEach((change) => {
+			if (change.type == 'modified') {
+
+				if(change.doc.id == gamecode) {
+
+					App.firebase.getFirestore().collection('games').doc(gamecode).get()
+					.then((snapshot) => {
+						if (snapshot.data().started == true) {
+							App.router.navigate('/mapplayer');
+						}
+					});
+				}
+			}
+		});
 	});
 
 	// If user not logged in, go to sign in

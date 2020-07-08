@@ -28,35 +28,28 @@ export default () => {
 	const error = document.getElementById('txtError');
 
 	function setPlayer() {
+		const gamecode = inputGamecode.value;
 		firebase.auth().onAuthStateChanged((user) => {
-			const gamecode = inputGamecode.value;
-
 			navigator.geolocation.getCurrentPosition((position) => {
 				const lat = position.coords.latitude;
 				const lon = position.coords.longitude;
 
-				localStorage.setItem('Latitude', lat);
-				localStorage.setItem('Longitude', lon);
-			});
+				const player = {
+					location: {
+						latitude: lat,
+						longitude: lon,
+					},
+					image: user.photoURL,
+					name: user.displayName,
+				};
 
-			const lat = localStorage.getItem('Latitude');
-			const lon = localStorage.getItem('Longitude');
-
-			const player = {
-				location: {
-					latitude: lat,
-					longitude: lon,
-				},
-				image: user.photoURL,
-				name: user.displayName,
-			};
-
-			App.firebase.getFirestore().collection('games').doc(gamecode)
-			.collection('players')
-			.doc()
-			.set(player)
-			.then(() => {
-				console.log('Je bent aan de game toegevoegd');
+				App.firebase.getFirestore().collection('games').doc(gamecode)
+				.collection('players')
+				.doc()
+				.set(player)
+				.then(() => {
+					console.log('Je bent aan de game toegevoegd');
+				});
 			});
 		});
 	}
@@ -84,43 +77,4 @@ export default () => {
 	nextBtn.addEventListener('click', () => {
 		codeChecker();
 	});
-
-	// Set players in the game
-	/* const gamecode = localStorage.getItem('GameCode');
-
-	App.firebase.getFirestore().collection('games').get().then((snapshot) => {
-		snapshot.docs.forEach(doc => {
-			console.log(doc.data());
-		})
-	}); */
-
-	/* App.firebase.getFirestore().collection('games').get().then((games) => {
-		games.forEach((game) => {
-			if (game.id === gamecode) {
-				// loop players
-				game.data().players.forEach((player, i) => {
-					// getting location of a player
-					if(currentUser.uid === player.uid) {
-						if (navigator.geolocation) {
-							navigator.geolocation.getCurrentPosition((pos) => {
-								const lat = pos.coords.latitude;
-								const lon = pos.coords.longitude;
-								const object = {
-									latitude: lat,
-									longitude: lon,
-									playerid: player.uid,
-								};
-
-								App.firebase.getFirestore().collection('games').doc(gamecode).update({
-									positions: App.firebase.getFirestoreWithoutBraces().FieldValue.arrayUnion(object),
-								});
-							});
-						} else {
-							console.log('Geolocation doesnt work');
-						}
-					}
-				});
-			}
-		});
-	}); */
 };

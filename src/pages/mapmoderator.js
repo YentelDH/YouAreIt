@@ -168,7 +168,7 @@ export default () => {
 		if (user.photoURL) {
 			newImg.src = user.photoURL;
 		} else {
-			newImg.src = '../../public/images/example.efe0dbc.jpg';
+			newImg.src = 'https://pwco.com.sg/wp-content/uploads/2020/05/Generic-Profile-Placeholder-v3.png';
 		}
 	});
 
@@ -191,7 +191,7 @@ if ('geolocation' in navigator) {
 // taking everything out of local storage
 const userLat = localStorage.getItem('Latitude');
 const userLon = localStorage.getItem('Longitude');
-const distance = localStorage.getItem('Distance');
+// const distance = localStorage.getItem('Distance');
 
 mapboxgl.accessToken = MAPBOX_API_KEY;
   // create the MapBox options
@@ -201,55 +201,13 @@ mapboxgl.accessToken = MAPBOX_API_KEY;
 		center: [userLon, userLat], // starting position
 		zoom: 16, // starting zoom
 	});
-
-	/* new mapboxgl.Marker()
+	// show marker of the moderator
+	new mapboxgl.Marker()
 		.setLngLat([userLon, userLat])
-		.addTo(map); */
+		.addTo(map);
 
-		var url = 'https://wanderdrone.appspot.com/';
-		map.on('load', function() {
-			var request = new XMLHttpRequest();
-			window.setInterval(function() {
-				// make a GET request to parse the GeoJSON at the url
-				request.open('GET', url, true);
-				request.onload = function() {
-					if (this.status >= 200 && this.status < 400) {
-						// retrieve the JSON from the response
-						var json = JSON.parse(this.response);
-						console.log(json);
-						
-						// update the drone symbol's location on the map
-						map.getSource('drone').setData(json);
-						
-						// fly the map to the drone's current location
-						map.flyTo({
-							center: json.geometry.coordinates,
-							speed: 0.5
-						});
-					}
-				};
-				request.send();
-			}, 10000);
-		 
-		map.addSource('drone', { type: 'geojson', data: url });
-
-		map.addLayer({
-			'id': 'drone',
-			'type': 'symbol',
-			'source': 'drone',
-			'layout': {
-				'icon-image': 'rocket-15'
-			}
-		});
-
-		navigator.geolocation.getCurrentPosition((position) => {
-			const lat = position.coords.latitude;
-			const lon = position.coords.longitude;
-
-			console.log(lat, lon)
-		});
-
-	/* // Where the circle has to be
+	/*
+		// Where the circle has to be
     map.on('load', () => {
       map.addSource('source_circle_500', {
         type: 'geojson',
@@ -263,7 +221,7 @@ mapboxgl.accessToken = MAPBOX_API_KEY;
             },
           }],
         },
-	}); */
+	});
 
       // How big, color the circle has to be
       map.addLayer({
@@ -283,5 +241,5 @@ mapboxgl.accessToken = MAPBOX_API_KEY;
 					'circle-opacity': 0.1,
         },
       });
-    });
+    }); */
 };
