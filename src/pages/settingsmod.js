@@ -94,7 +94,6 @@ export default () => {
 	function activeGame() {
 		App.firebase.getFirestore().collection('games').doc(gamecode).update({
 			started: true,
-			status: false,
 			timestamp: firebase.firestore.FieldValue.serverTimestamp(),
 		});
 	}

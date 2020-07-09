@@ -27,6 +27,10 @@ export default () => {
 	const nextBtn = document.getElementById('next');
 	const error = document.getElementById('txtError');
 
+	/* thanks to Silver Ringvee: https://stackoverflow.com/users/4769218/silver-ringvee */
+	const playerCode = Math.random().toString(36).substr(2, 5);
+	localStorage.setItem('playerCode', playerCode);
+
 	function setPlayer() {
 		const gamecode = inputGamecode.value;
 		firebase.auth().onAuthStateChanged((user) => {
@@ -45,7 +49,7 @@ export default () => {
 
 				App.firebase.getFirestore().collection('games').doc(gamecode)
 				.collection('players')
-				.doc()
+				.doc(playerCode)
 				.set(player)
 				.then(() => {
 					console.log('Je bent aan de game toegevoegd');

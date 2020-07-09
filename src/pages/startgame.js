@@ -61,7 +61,7 @@ export default () => {
 	/*
    	* Function to set player in game
    */
-  function setPlayer() {
+  /* function setPlayer() {
 		const gamecode = localStorage.getItem('GameCode');
 		console.log(gamecode);
 		firebase.auth().onAuthStateChanged((user) => {
@@ -85,11 +85,11 @@ export default () => {
 				.doc()
 				.set(player)
 				.then(() => {
-					console.log('Je bent aan de game toegevoegd');
+					console.log('Je bent aan de game toegevoegt');
 				});
 			});
 		});
-	}
+	} */
 
 	function resetLocal() {
 		localStorage.removeItem('Distance');
@@ -105,6 +105,6 @@ export default () => {
 		localStorage.setItem('Moderator', true);
 		resetLocal();
 		setDocument();
-		setPlayer();
+		//setPlayer();
 	});
 };

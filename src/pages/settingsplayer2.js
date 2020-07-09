@@ -14,10 +14,12 @@ const settingsPlayer2Template = require('../templates/settingsplayer2.hbs');
 export default () => {
 	const gamecode = localStorage.getItem('GameCode');
 
-	// Give name of moderator to html
+	// Give name of moderator to html 
 	App.firebase.getFirestore().collection('games').doc(gamecode).get()
 	.then((doc) => {
 		const moderatorName = doc.data().moderator;
+		localStorage.setItem('Timer', doc.data().time);
+		localStorage.setItem('Distance', doc.data().distance);
 
 		// render the template
 		App.render(settingsPlayer2Template({ moderatorName }));

@@ -100,7 +100,9 @@ export default () => {
 	// if clicked on the "start game" popup then hide popup and tell the game has started
 	overlayStart.addEventListener('click', () => {
 		overlayStart.style.display = 'none';
-		localStorage.setItem('start game', 'done');
+		App.firebase.getFirestore().collection('games').doc(gamecode).update({
+			status: false,
+		});
 		// the timer starts when clicking on overlay
 		startTimer();
 	});
@@ -204,8 +206,11 @@ mapboxgl.accessToken = MAPBOX_API_KEY;
 		center: [userLon, userLat], // starting position
 		zoom: 16, // starting zoom
 	});
+
 	// show marker of the moderator
-	new mapboxgl.Marker()
+	new mapboxgl.Marker({ 
+		"color": "green" 
+	})
 		.setLngLat([userLon, userLat])
 		.addTo(map);
 
@@ -215,8 +220,11 @@ mapboxgl.accessToken = MAPBOX_API_KEY;
 	.onSnapshot((snapshot) => {
 		const changes = snapshot.docChanges();
 		changes.forEach((change) => {
-			new mapboxgl.Marker()
-				.setLngLat([change.doc.data().location.longitude, change.doc.data().location.latitude])
+			new mapboxgl.Marker({ 
+				"color": "red" 
+			})
+				.setLngLat([change.doc.data().location.longitude,
+							change.doc.data().location.latitude])
 				.addTo(map);
 		});
 	});
