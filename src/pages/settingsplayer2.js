@@ -14,7 +14,7 @@ const settingsPlayer2Template = require('../templates/settingsplayer2.hbs');
 export default () => {
 	const gamecode = localStorage.getItem('GameCode');
 
-	// Give name of moderator to html 
+	// Give name of moderator to html
 	App.firebase.getFirestore().collection('games').doc(gamecode).get()
 	.then((doc) => {
 		const moderatorName = doc.data().moderator;
@@ -85,9 +85,7 @@ export default () => {
 		const changes = snapshot.docChanges();
 		changes.forEach((change) => {
 			if (change.type == 'modified') {
-
-				if(change.doc.id == gamecode) {
-
+				if (change.doc.id == gamecode) {
 					App.firebase.getFirestore().collection('games').doc(gamecode).get()
 					.then((snapshot) => {
 						if (snapshot.data().started == true) {

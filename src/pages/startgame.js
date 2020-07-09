@@ -105,6 +105,6 @@ export default () => {
 		localStorage.setItem('Moderator', true);
 		resetLocal();
 		setDocument();
-		//setPlayer();
+		// setPlayer();
 	});
 };

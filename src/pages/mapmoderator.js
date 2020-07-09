@@ -27,6 +27,19 @@ export default () => {
 		}
 	});
 
+	// Constanten
+	const closeBtn = document.getElementById('closeBtn');
+	const optionsBtn = document.getElementById('optionsBtn');
+	const popup = document.getElementById('popup-1');
+
+	const endGameCard = document.getElementById('endGameCard');
+	const deny = document.getElementById('deny');
+	const accept = document.getElementById('accept');
+	const popup2 = document.getElementById('popup-2');
+	const overlay = document.getElementById('overlayLogOut');
+
+	const gamecode = localStorage.getItem('GameCode');
+
 	/* ********************** TIMER *********************** */
 
 	/**
@@ -117,19 +130,6 @@ export default () => {
 
 	/* ********************** OPTIONS GAME *********************** */
 
-	const closeBtn = document.getElementById('closeBtn');
-	const optionsBtn = document.getElementById('optionsBtn');
-	const popup = document.getElementById('popup-1');
-
-	const endGameCard = document.getElementById('endGameCard');
-	const deny = document.getElementById('deny');
-	const accept = document.getElementById('accept');
-	const popup2 = document.getElementById('popup-2');
-	const overlay = document.getElementById('overlayLogOut');
-
-	const gamecode = localStorage.getItem('GameCode');
-
-
 	// show popup when clicking on the card
 	optionsBtn.addEventListener('click', () => {
 		popup.style.zIndex = '2';
@@ -208,8 +208,8 @@ mapboxgl.accessToken = MAPBOX_API_KEY;
 	});
 
 	// show marker of the moderator
-	new mapboxgl.Marker({ 
-		"color": "green" 
+	new mapboxgl.Marker({
+		'color': 'green',
 	})
 		.setLngLat([userLon, userLat])
 		.addTo(map);
@@ -220,13 +220,12 @@ mapboxgl.accessToken = MAPBOX_API_KEY;
 	.onSnapshot((snapshot) => {
 		const changes = snapshot.docChanges();
 		changes.forEach((change) => {
-			new mapboxgl.Marker({ 
-				"color": "red" 
+			new mapboxgl.Marker({
+				'color': 'red',
 			})
 				.setLngLat([change.doc.data().location.longitude,
 							change.doc.data().location.latitude])
 				.addTo(map);
 		});
 	});
-
 };

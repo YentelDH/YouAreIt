@@ -36,6 +36,7 @@ export default () => {
 
 	// Add a realtime listener
 	firebase.auth().onAuthStateChanged((user) => {
+		const newImg = document.getElementById('newImg');
 		if (user.photoURL) {
 			newImg.src = user.photoURL;
 		} else {
@@ -44,8 +45,6 @@ export default () => {
 	});
 
 	// Constanten
-	const newImg = document.getElementById('newImg');
-
 	// taking everything out of local storage
 	const userLat = localStorage.getItem('Latitude');
 	const userLon = localStorage.getItem('Longitude');
@@ -133,7 +132,7 @@ export default () => {
 					App.firebase.getFirestore().collection('games').doc(gamecode).get()
 					.then((snapshot) => {
 						if (snapshot.data().status == false) {
-							startTimer()
+							startTimer();
 						}
 					});
 				}
@@ -141,19 +140,20 @@ export default () => {
 		});
 	});
 
-
 /* ********************** MAPBOX *********************** */
 
 /* ****** GEOLOCATION ****** */
 
-setInterval(() => { 
+setInterval(() => {
 	if ('geolocation' in navigator) {
 		navigator.geolocation.getCurrentPosition((position) => {
 			const lat = position.coords.latitude;
 			const lon = position.coords.longitude;
 
 			App.firebase.getFirestore().collection('games').doc(gamecode)
-			.collection('players').doc(playercode).update({
+			.collection('players')
+			.doc(playercode)
+			.update({
 				location: {
 					latitude: lat,
 					longitude: lon,
@@ -167,8 +167,7 @@ setInterval(() => {
 	} else {
 		console.log('Geolocation not available');
 	}
-}, 5000)
-
+}, 5000);
 
 mapboxgl.accessToken = MAPBOX_API_KEY;
   // create the MapBox options
@@ -191,7 +190,7 @@ mapboxgl.accessToken = MAPBOX_API_KEY;
 
 	// show marker of the player
 	new mapboxgl.Marker({ 
-		"color": "green"
+		'color': 'green',
 	})
 		.setLngLat([userLon, userLat])
 		.addTo(map);
@@ -203,7 +202,7 @@ mapboxgl.accessToken = MAPBOX_API_KEY;
 		const changes = snapshot.docChanges();
 		changes.forEach((change) => {
 			new mapboxgl.Marker({ 
-				"color": "grey" 
+				'color': 'grey',
 			})
 				.setLngLat([change.doc.data().location.longitude,
 							change.doc.data().location.latitude])
