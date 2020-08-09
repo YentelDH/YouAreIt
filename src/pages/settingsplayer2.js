@@ -17,7 +17,7 @@ export default () => {
 	// Give name of moderator to html
 	App.firebase.getFirestore().collection('games').doc(gamecode).get()
 	.then((doc) => {
-		const moderatorName = doc.data().moderator;
+		const moderatorName = doc.data().moderator.name;
 		localStorage.setItem('Timer', doc.data().time);
 		localStorage.setItem('Distance', doc.data().distance);
 
@@ -86,10 +86,13 @@ export default () => {
 		changes.forEach((change) => {
 			if (change.type == 'modified') {
 				if (change.doc.id == gamecode) {
-					App.firebase.getFirestore().collection('games').doc(gamecode).get();
-					if (snapshot.data().started == true) {
-						App.router.navigate('/mapplayer');
-					}
+					App.firebase.getFirestore().collection('games').doc(gamecode).get()
+					// eslint-disable-next-line no-shadow
+					.then((snapshot) => {
+						if (snapshot.data().started == true) {
+							App.router.navigate('/mapplayer');
+						}
+					});
 				}
 			}
 		});

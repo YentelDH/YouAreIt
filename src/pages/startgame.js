@@ -29,7 +29,8 @@ export default () => {
    */
   function setDocument() {
 		/* thanks to Silver Ringvee: https://stackoverflow.com/users/4769218/silver-ringvee */
-		const randomNumber = Math.random().toString(36).substr(2, 5);
+		const randomNumberLow = Math.random().toString(36).substr(2, 5);
+		const randomNumber = randomNumberLow.toUpperCase();
 		localStorage.setItem('GameCode', randomNumber);
 		console.log(randomNumber);
 
