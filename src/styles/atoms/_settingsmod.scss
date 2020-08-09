@@ -29,6 +29,7 @@
 	background-color: $title-color-primary;
 	margin: 0 6px;
 
+	// stylelint-disable-next-line selector-class-pattern
 	&.active {
 		width: 2rem;
 	}

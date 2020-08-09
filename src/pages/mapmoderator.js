@@ -209,7 +209,7 @@ mapboxgl.accessToken = MAPBOX_API_KEY;
 
 	// show marker of the moderator
 	new mapboxgl.Marker({
-		'color': 'green',
+		color: 'green',
 	})
 		.setLngLat([userLon, userLat])
 		.addTo(map);
@@ -221,7 +221,7 @@ mapboxgl.accessToken = MAPBOX_API_KEY;
 		const changes = snapshot.docChanges();
 		changes.forEach((change) => {
 			new mapboxgl.Marker({
-				'color': 'red',
+				color: 'red',
 			})
 				.setLngLat([change.doc.data().location.longitude,
 							change.doc.data().location.latitude])

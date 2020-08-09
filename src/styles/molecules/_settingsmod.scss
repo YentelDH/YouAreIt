@@ -1,4 +1,5 @@
 /******************************* Settings General *******************************/
+/* stylelint-disable sh-waqar/declaration-use-variable */
 
 .m-preparation-header {
 	padding-bottom: rem(10px);
@@ -41,7 +42,6 @@
 	&-delete {
 		border: none;
 		color: $text-color-primary;
-		background-color: none;
 		background: none;
 	}
 }

@@ -125,16 +125,12 @@ export default () => {
 	.onSnapshot((snapshot) => {
 		const changes = snapshot.docChanges();
 		changes.forEach((change) => {
-			if (change.type == 'modified') {
-
-				if(change.doc.id == gamecode) {
-
-					App.firebase.getFirestore().collection('games').doc(gamecode).get()
-					.then((snapshot) => {
-						if (snapshot.data().status == false) {
-							startTimer();
-						}
-					});
+			if (change.type === 'modified') {
+				if (change.doc.id === gamecode) {
+					App.firebase.getFirestore().collection('games').doc(gamecode).get();
+					if (snapshot.data().status === false) {
+						startTimer();
+					}
 				}
 			}
 		});
@@ -189,8 +185,8 @@ mapboxgl.accessToken = MAPBOX_API_KEY;
 	);
 
 	// show marker of the player
-	new mapboxgl.Marker({ 
-		'color': 'green',
+	new mapboxgl.Marker({
+		color: 'green',
 	})
 		.setLngLat([userLon, userLat])
 		.addTo(map);
@@ -201,8 +197,8 @@ mapboxgl.accessToken = MAPBOX_API_KEY;
 	.onSnapshot((snapshot) => {
 		const changes = snapshot.docChanges();
 		changes.forEach((change) => {
-			new mapboxgl.Marker({ 
-				'color': 'grey',
+			new mapboxgl.Marker({
+				color: 'grey',
 			})
 				.setLngLat([change.doc.data().location.longitude,
 							change.doc.data().location.latitude])

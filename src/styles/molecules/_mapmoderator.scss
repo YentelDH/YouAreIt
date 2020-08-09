@@ -1,3 +1,5 @@
+/* stylelint-disable sh-waqar/declaration-use-variable */
+
 .m-overlay {
 
 	&-end {
@@ -35,8 +37,9 @@
 	}
 }
 
+// stylelint-disable-next-line selector-max-id
 #progressbar {
-  width: 100vw;
+	width: 100vw;
 	height: 6px;
 	z-index: 4;
 	background-color: $background-color-overlay-bar;
