@@ -65,8 +65,9 @@ export default () => {
 		const playerDelete = document.createElement('button');
 		playerDelete.classList.add('m-player-delete');
 		playerDelete.setAttribute('id', 'deleteBtn');
-		const deleteIcon = document.createElement('i');
-		deleteIcon.innerHTML = '\u232B';
+		const deleteIcon = document.createElement('div');
+		deleteIcon.style.fontFamily = 'FontAwesome';
+		deleteIcon.innerHTML = '&#xf014;';
 		deleteIcon.style.fontSize = '1.8rem';
 
 		playerList.appendChild(listItem); // ul > li
