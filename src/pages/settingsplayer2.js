@@ -65,7 +65,6 @@ export default () => {
 	App.firebase.getFirestore().collection('games')
 	.doc(gamecode).collection('players')
 	.onSnapshot((snapshot) => {
-		const playerList = document.getElementById('player-list');
 		const changes = snapshot.docChanges();
 		changes.forEach((change) => {
 			// when a player has been added, show it in html
@@ -73,6 +72,7 @@ export default () => {
 				renderPlayers(change.doc);
 			// when a player has been removed, delete it from html
 			} else if (change.type == 'removed') {
+				const playerList = document.getElementById('playerList');
 				const listItem = playerList.querySelector(`[data-id=${change.doc.id}]`);
 				playerList.removeChild(listItem);
 			}

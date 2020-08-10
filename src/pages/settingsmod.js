@@ -41,44 +41,13 @@ export default () => {
 	const gamecode = localStorage.getItem('GameCode');
 
 	const playerList = document.getElementById('playerList');
-	const name = document.getElementById('listItemName');
-	const image = document.getElementById('listItemImg');
 
 	const notification = new Notify();
 
 	// shows code of game in html
 	gameCode.textContent = code;
 
-	/* function renderPlayers(doc) {
-		const listItem = document.getElementById('listItem');
-		listItem.setAttribute('data-id', doc.id);
-		name.textContent = doc.data().name;
-
-		if (doc.data().image) {
-			image.src = doc.data().image;
-		} else {
-			image.src = 'https://pwco.com.sg/wp-content/uploads/2020/05/Generic-Profile-Placeholder-v3.png';
-		}
-
-		accept2.addEventListener('click', (e) => {
-			e.stopPropagation();
-			const id = listItem.getAttribute('data-id');
-			App.firebase.getFirestore().collection('games')
-			.doc(code).collection('players')
-			.doc(id)
-			.delete();
-
-			overlayDelete.style.display = 'none';
-			popup3.style.zIndex = '-3';
-		});
-
-		// hide delete button of moderator
-		playerList.firstElementChild.getElementsByClassName('m-player-delete')[0].style.display = 'none';
-	} */
-
 	function renderPlayers(doc) {
-		const playerList = document.getElementById('playerList');
-
 		const listItem = document.createElement('li');
 		listItem.classList.add('o-container-player');
 		listItem.setAttribute('data-id', doc.id);
@@ -108,8 +77,6 @@ export default () => {
 		listItem.appendChild(playerInfo); // li > div 2
 		playerInfo.appendChild(playerName); // div 1 > img
 
-		listItem.appendChild(playerInfo); // li > div 2
-
 		listItem.appendChild(playerDelete); // li > button
 		playerDelete.appendChild(deleteIcon); // button > i
 
@@ -133,14 +100,12 @@ export default () => {
 			e.stopPropagation();
 			const idParent = e.target.parentElement.parentElement.getAttribute('data-id');
 			localStorage.setItem('Consider Delete', idParent);
-
 		});
 
 		// delete player if clicked on yes
 		accept2.addEventListener('click', (e) => {
 			e.stopPropagation();
 			const id = localStorage.getItem('Consider Delete');
-			console.log(id);
 			App.firebase.getFirestore().collection('games')
 			.doc(code).collection('players')
 			.doc(id)
