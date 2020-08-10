@@ -27,6 +27,10 @@ export default class Notify {
   }
 
   notifyKickPlayer() {
-    return this.notifyUser('JE BEN ERUIT GESCHOPT', 'De moderetor heeft jou verwijderd van het spel.', '../assets/images/logo.png');
+    return this.notifyUser('JE BEN ERUIT GESCHOPT ✊', 'De moderetor heeft jou verwijderd van het spel.', '../assets/images/logo.png');
+  }
+
+  notifyGameEnded() {
+    return this.notifyUser('HET SPEL IS GESTOPT ✋', 'De moderetor heeft het spel vroegtijdig gestopt.', '../assets/images/logo.png');
   }
 }

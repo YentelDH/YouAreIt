@@ -12,6 +12,7 @@ import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/analytics';
 import { MAPBOX_API_KEY, firebaseConfig } from '../consts';
+import Notify from '../classes/Notifications';
 
 import App from '../lib/App';
 
@@ -52,6 +53,7 @@ export default () => {
 	const distance = localStorage.getItem('Distance');
 	const gamecode = localStorage.getItem('GameCode');
 	const playercode = localStorage.getItem('playerCode');
+	const notification = new Notify();
 
 	/* ********************** TIMER *********************** */
 
@@ -133,6 +135,9 @@ export default () => {
 					.then((snapshot) => {
 						if (snapshot.data().status == false) {
 							startTimer();
+						} else if (snapshot.data().status == true) {
+							notification.notifyGameEnded();
+							App.router.navigate('/map');
 						}
 					});
 				}

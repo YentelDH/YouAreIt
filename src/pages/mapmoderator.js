@@ -156,6 +156,9 @@ export default () => {
 	accept.addEventListener('click', () => {
 		deleteTimer();
 		App.router.navigate('/map');
+		App.firebase.getFirestore().collection('games').doc(gamecode).update({
+			status: true,
+		});
 	});
 
   /* ********************** GOOGLE *********************** */
