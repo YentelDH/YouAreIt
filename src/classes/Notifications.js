@@ -25,4 +25,8 @@ export default class Notify {
   notifyPlayer() {
     return this.notifyUser('HET SPEL BEGINT ✋', 'Veel succes, verlies de weg niet!', '../assets/images/logo.png');
   }
+
+  notifyKickPlayer() {
+    return this.notifyUser('JE BEN ERUIT GESCHOPT', 'De moderetor heeft jou verwijderd van het spel.', '../assets/images/logo.png');
+  }
 }

@@ -32,7 +32,6 @@ export default () => {
 		const randomNumberLow = Math.random().toString(36).substr(2, 5);
 		const randomNumber = randomNumberLow.toUpperCase();
 		localStorage.setItem('GameCode', randomNumber);
-		console.log(randomNumber);
 
 		firebase.auth().onAuthStateChanged((user) => {
 			navigator.geolocation.getCurrentPosition((position) => {
@@ -58,39 +57,6 @@ export default () => {
 			});
 		});
   }
-
-	/*
-   	* Function to set player in game
-   */
-  /* function setPlayer() {
-		const gamecode = localStorage.getItem('GameCode');
-		console.log(gamecode);
-		firebase.auth().onAuthStateChanged((user) => {
-			navigator.geolocation.getCurrentPosition((position) => {
-				const lat = position.coords.latitude;
-				const lon = position.coords.longitude;
-
-				// object of player/user
-				const player = {
-					location: {
-						latitude: lat,
-						longitude: lon,
-					},
-					image: user.photoURL,
-					name: user.displayName,
-				};
-
-				// setting object/player in the collection players
-				App.firebase.getFirestore().collection('games').doc(gamecode)
-				.collection('players')
-				.doc()
-				.set(player)
-				.then(() => {
-					console.log('Je bent aan de game toegevoegt');
-				});
-			});
-		});
-	} */
 
 	function resetLocal() {
 		localStorage.removeItem('Distance');

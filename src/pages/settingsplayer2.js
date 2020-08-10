@@ -16,7 +16,7 @@ const notification = new Notify();
 
 export default () => {
 	const gamecode = localStorage.getItem('GameCode');
-	// const playercode = localStorage.getItem('playerCode');
+	const playercode = localStorage.getItem('playerCode');
 
 	// Give name of moderator to html
 	App.firebase.getFirestore().collection('games').doc(gamecode).get()
@@ -30,7 +30,7 @@ export default () => {
 	});
 
 	function renderPlayers(doc) {
-		const playerList = document.getElementById('playerList');
+		const playerList = document.getElementById('playerListPlayer');
 
 		const listItem = document.createElement('li');
 		listItem.classList.add('o-container-player');
@@ -76,9 +76,11 @@ export default () => {
 				renderPlayers(change.doc);
 			// when a player has been removed, delete it from html
 			} else if (change.type == 'removed') {
-				const playerList = document.getElementById('playerList');
-				const listItem = playerList.querySelector(`[data-id=${change.doc.id}]`);
-				playerList.removeChild(listItem);
+				if (change.doc.id == playercode) {
+					console.log('u just got deleted');
+					App.router.navigate('/map');
+					notification.notifyKickPlayer();
+				}
 			}
 		});
 	});
