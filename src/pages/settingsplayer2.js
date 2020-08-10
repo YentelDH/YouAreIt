@@ -26,7 +26,7 @@ export default () => {
 	});
 
 	function renderPlayers(doc) {
-		const playerList = document.getElementById('player-list');
+		const playerList = document.getElementById('playerList');
 
 		const listItem = document.createElement('li');
 		listItem.classList.add('o-container-player');

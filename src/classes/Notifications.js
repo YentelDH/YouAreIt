@@ -21,4 +21,8 @@ export default class Notify {
   notifyModerator() {
     return this.notifyUser('Succes', 'Jij bent de moderator!', '../assets/images/logo.png');
   }
+
+  notifyPlayer() {
+    return this.notifyUser('Yay', 'Veel plezier ouwe rakker!', '../assets/images/logo.png');
+  }
 }

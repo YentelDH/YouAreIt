@@ -52,7 +52,7 @@ export default () => {
 				.doc(playerCode)
 				.set(player)
 				.then(() => {
-					console.log('Je bent aan de game toegevoegd');
+					// console.log('Je bent aan de game toegevoegd');
 				});
 			});
 		});

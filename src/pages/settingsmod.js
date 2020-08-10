@@ -33,7 +33,6 @@ export default () => {
 	const popup2 = document.getElementById('popup-2');
 	const overlay = document.getElementById('overlayLogOut');
 
-	const deleteBtn = document.getElementById('deleteBtn');
 	const deny2 = document.getElementById('deny2');
 	const accept2 = document.getElementById('accept2');
 	const popup3 = document.getElementById('popup-3');
@@ -41,17 +40,18 @@ export default () => {
 
 	const gamecode = localStorage.getItem('GameCode');
 
+	const playerList = document.getElementById('playerList');
+	const name = document.getElementById('listItemName');
+	const image = document.getElementById('listItemImg');
+
 	const notification = new Notify();
 
 	// shows code of game in html
 	gameCode.textContent = code;
 
-	function renderPlayers(doc) {
+	/* function renderPlayers(doc) {
 		const listItem = document.getElementById('listItem');
 		listItem.setAttribute('data-id', doc.id);
-		const name = document.getElementById('listItemName');
-		const image = document.getElementById('listItemImg');
-
 		name.textContent = doc.data().name;
 
 		if (doc.data().image) {
@@ -71,13 +71,90 @@ export default () => {
 			overlayDelete.style.display = 'none';
 			popup3.style.zIndex = '-3';
 		});
+
+		// hide delete button of moderator
+		playerList.firstElementChild.getElementsByClassName('m-player-delete')[0].style.display = 'none';
+	} */
+
+	function renderPlayers(doc) {
+		const playerList = document.getElementById('playerList');
+
+		const listItem = document.createElement('li');
+		listItem.classList.add('o-container-player');
+		listItem.setAttribute('data-id', doc.id);
+
+		const playerFrame = document.createElement('div');
+		playerFrame.classList.add('m-player-frame');
+		const playerImage = document.createElement('img');
+		playerImage.classList.add('a-player-picture');
+
+		const playerInfo = document.createElement('div');
+		playerInfo.classList.add('m-player-info');
+		const playerName = document.createElement('p');
+		playerName.classList.add('a-player-name');
+
+		const playerDelete = document.createElement('button');
+		playerDelete.classList.add('m-player-delete');
+		playerDelete.setAttribute('id', 'deleteBtn');
+		const deleteIcon = document.createElement('i');
+		deleteIcon.innerHTML = '\u232B';
+		deleteIcon.style.fontSize = '1.8rem';
+
+		playerList.appendChild(listItem); // ul > li
+
+		listItem.appendChild(playerFrame); // li > div 1
+		playerFrame.appendChild(playerImage); // div 1 > img
+
+		listItem.appendChild(playerInfo); // li > div 2
+		playerInfo.appendChild(playerName); // div 1 > img
+
+		listItem.appendChild(playerInfo); // li > div 2
+
+		listItem.appendChild(playerDelete); // li > button
+		playerDelete.appendChild(deleteIcon); // button > i
+
+		playerName.textContent = doc.data().name;
+
+		if (doc.data().image) {
+			playerImage.src = doc.data().image;
+		} else {
+			playerImage.src = 'https://pwco.com.sg/wp-content/uploads/2020/05/Generic-Profile-Placeholder-v3.png';
+		}
+
+		// hide delete button of moderator
+		playerList.firstElementChild.getElementsByClassName('m-player-delete')[0].style.display = 'none';
+
+		/*
+		* DELETE PLAYER BUTTON
+		*/
+		playerDelete.addEventListener('click', (e) => {
+			popup3.style.zIndex = '3';
+			overlayDelete.style.display = 'flex';
+			e.stopPropagation();
+			const idParent = e.target.parentElement.parentElement.getAttribute('data-id');
+			localStorage.setItem('Consider Delete', idParent);
+
+		});
+
+		// delete player if clicked on yes
+		accept2.addEventListener('click', (e) => {
+			e.stopPropagation();
+			const id = localStorage.getItem('Consider Delete');
+			console.log(id);
+			App.firebase.getFirestore().collection('games')
+			.doc(code).collection('players')
+			.doc(id)
+			.delete();
+
+			overlayDelete.style.display = 'none';
+			popup3.style.zIndex = '-3';
+		});
 	}
 
 	// Real time listener
 	App.firebase.getFirestore().collection('games')
 	.doc(gamecode).collection('players')
 	.onSnapshot((snapshot) => {
-		const playerList = document.getElementById('player-list');
 		const changes = snapshot.docChanges();
 		changes.forEach((change) => {
 			// when a player has been added, show it in html
@@ -98,15 +175,6 @@ export default () => {
 		});
 	}
 
-	/*
-	* DELETE PLAYER BUTTON
-	*/
-	// If you click the delete button
-	deleteBtn.addEventListener('click', () => {
-		popup3.style.zIndex = '3';
-		overlayDelete.style.display = 'flex';
-	});
-
 	// Hide popup when clicking on the cancel button
 	deny2.addEventListener('click', () => {
 		popup3.style.zIndex = '-3';
@@ -116,7 +184,6 @@ export default () => {
 	/*
 	* GO NEXT BUTTON
 	*/
-
 	// If you click the next button
 	nextBtn.addEventListener('click', () => {
 			popup2.style.zIndex = '3';
