@@ -5,6 +5,7 @@
 /* eslint-disable no-tabs */
 /* eslint-disable indent */
 /* eslint-disable no-undef */
+/* eslint-disable eqeqeq */
 /* eslint-disable prefer-template */
 
 import * as firebase from 'firebase/app';
@@ -127,10 +128,13 @@ export default () => {
 		changes.forEach((change) => {
 			if (change.type === 'modified') {
 				if (change.doc.id === gamecode) {
-					App.firebase.getFirestore().collection('games').doc(gamecode).get();
-					if (snapshot.data().status === false) {
-						startTimer();
-					}
+					App.firebase.getFirestore().collection('games').doc(gamecode).get()
+					// eslint-disable-next-line no-shadow
+					.then((snapshot) => {
+						if (snapshot.data().status == false) {
+							startTimer();
+						}
+					});
 				}
 			}
 		});
