@@ -53,6 +53,13 @@ export default () => {
 	const distance = localStorage.getItem('Distance');
 	const gamecode = localStorage.getItem('GameCode');
 	const playercode = localStorage.getItem('playerCode');
+
+	const leaveBtn = document.getElementById('leaveBtn');
+	const overlay = document.getElementById('overlayLeave');
+	const popup = document.getElementById('popup-2');
+	const denyBtn = document.getElementById('deny');
+	const acceptBtn = document.getElementById('accept');
+
 	const notification = new Notify();
 
 	/* ********************** TIMER *********************** */
@@ -145,37 +152,59 @@ export default () => {
 		});
 	});
 
-/* ********************** MAPBOX *********************** */
+	/* ********************** LEAVE BUTTON *********************** */
 
-/* ****** GEOLOCATION ****** */
-
-setInterval(() => {
-	if ('geolocation' in navigator) {
-		navigator.geolocation.getCurrentPosition((position) => {
-			const lat = position.coords.latitude;
-			const lon = position.coords.longitude;
-
-			App.firebase.getFirestore().collection('games').doc(gamecode)
-			.collection('players')
-			.doc(playercode)
-			.update({
-				location: {
-					latitude: lat,
-					longitude: lon,
-				},
-			});
-
-			// putting it in local storage
-			localStorage.setItem('Latitude', lat);
-			localStorage.setItem('Longitude', lon);
+	// show popup when clicking on the card
+	leaveBtn.addEventListener('click', () => {
+		popup.style.zIndex = '10';
+		overlay.style.display = 'flex';
 	});
-	} else {
-		console.log('Geolocation not available');
-	}
-}, 5000);
 
-mapboxgl.accessToken = MAPBOX_API_KEY;
-  // create the MapBox options
+	// hide popup when clicking on the cancel button
+	denyBtn.addEventListener('click', () => {
+		popup.style.zIndex = '-2';
+		overlay.style.display = 'none';
+	});
+
+	// hide popup when clicking on the cancel button
+	acceptBtn.addEventListener('click', () => {
+		App.router.navigate('/map');
+		App.firebase.getFirestore().collection('games')
+		.doc(gamecode).collection('players')
+		.doc(playercode)
+		.delete();
+	});
+
+	/* ********************** MAPBOX *********************** */
+	/* ****** GEOLOCATION ****** */
+
+	setInterval(() => {
+		if ('geolocation' in navigator) {
+			navigator.geolocation.getCurrentPosition((position) => {
+				const lat = position.coords.latitude;
+				const lon = position.coords.longitude;
+
+				App.firebase.getFirestore().collection('games').doc(gamecode)
+				.collection('players')
+				.doc(playercode)
+				.update({
+					location: {
+						latitude: lat,
+						longitude: lon,
+					},
+				});
+
+				// putting it in local storage
+				localStorage.setItem('Latitude', lat);
+				localStorage.setItem('Longitude', lon);
+		});
+		} else {
+			console.log('Geolocation not available');
+		}
+	}, 5000);
+
+	mapboxgl.accessToken = MAPBOX_API_KEY;
+	// create the MapBox options
 	const map = new mapboxgl.Map({
 		container: 'mapbox', // container id
 		style: 'mapbox://styles/mapbox/light-v10',

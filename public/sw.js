@@ -1,9 +1,9 @@
 var serviceWorkerOption = {
   "assets": [
-    "/images/example.efe0dbc.jpg",
     "/images/games.0ac3e5f.svg",
     "/images/group.4c64ca3.svg",
-    "/main.fab81d7f7f703b3d9267.css",
+    "/images/example.efe0dbc.jpg",
+    "/main.775bb874e6b2c5f8ebdd.css",
     "/bundle.min.js"
   ]
 };
