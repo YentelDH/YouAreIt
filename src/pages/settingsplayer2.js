@@ -8,8 +8,11 @@
 
 import * as firebase from 'firebase/app';
 import App from '../lib/App';
+import Notify from '../classes/Notifications';
 
 const settingsPlayer2Template = require('../templates/settingsplayer2.hbs');
+
+const notification = new Notify();
 
 export default () => {
 	const gamecode = localStorage.getItem('GameCode');
@@ -92,6 +95,7 @@ export default () => {
 					.then((snapshot) => {
 						if (snapshot.data().started == true) {
 							App.router.navigate('/mapplayer');
+							notification.notifyPlayer();
 						}
 					});
 				}

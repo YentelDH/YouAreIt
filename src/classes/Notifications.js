@@ -19,10 +19,10 @@ export default class Notify {
 
   // Different kinds of notification
   notifyModerator() {
-    return this.notifyUser('Succes', 'Jij bent de moderator!', '../assets/images/logo.png');
+    return this.notifyUser('SUCCES ✊', 'Jij bent de moderator!', '../assets/images/logo.png');
   }
 
   notifyPlayer() {
-    return this.notifyUser('Yay', 'Veel plezier ouwe rakker!', '../assets/images/logo.png');
+    return this.notifyUser('HET SPEL BEGINT ✋', 'Veel succes, verlies de weg niet!', '../assets/images/logo.png');
   }
 }
