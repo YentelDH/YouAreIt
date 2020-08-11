@@ -55,6 +55,7 @@ export default () => {
 					},
 					image: user.photoURL,
 					name: user.displayName,
+					timestamp: firebase.firestore.FieldValue.serverTimestamp(),
 				};
 
 				App.firebase.getFirestore().collection('games').doc(gamecode)

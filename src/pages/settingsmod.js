@@ -120,6 +120,7 @@ export default () => {
 	// Real time listener
 	App.firebase.getFirestore().collection('games')
 	.doc(gamecode).collection('players')
+	.orderBy('timestamp')
 	.onSnapshot((snapshot) => {
 		const changes = snapshot.docChanges();
 		changes.forEach((change) => {
