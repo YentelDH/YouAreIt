@@ -3,7 +3,7 @@ var serviceWorkerOption = {
     "/images/games.0ac3e5f.svg",
     "/images/group.4c64ca3.svg",
     "/images/example.efe0dbc.jpg",
-    "/main.b82e64a459b4fcee709a.css",
+    "/main.1d56c6ba991136dc08a9.css",
     "/bundle.min.js"
   ]
 };
