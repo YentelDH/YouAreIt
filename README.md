@@ -1,30 +1,15 @@
-# 1920-mobdev1-code-template-full
+# You Are It
+You are it, the modern "play tag"
 
-## Included
+# Used Technologies
 
-* SASS/SCSS - A CSS Preprocessor - (https://sass-lang.com)
-* ESLint with AirBnB Style Guide (https://github.com/airbnb/javascript)
-* Stylelint with Studiohyperdrive Style Guide (https://www.npmjs.com/package/@studiohyperdrive/stylelint-config)
-* Handlebars - Minimal templating on Steroids (https://handlebarsjs.com/)
-* Navigo - A simple Javascript router with fallback for older browsers (https://github.com/krasimir/navigo)
-* Firebase - The Firebase implementation (https://firebase.google.com/)
-* Mapbox - An implementation of MapBox (https://docs.mapbox.com/mapbox-gl-js/api/)
-* Service Workers - The Service Workers implementation for webpack (https://www.npmjs.com/package/serviceworker-webpack-plugin)
+* Firebase 
+* Mapbox 
+* Handlebars 
 
-## What you will need
+# Design
+## Visual design
+https://xd.adobe.com/view/11f4372c-e4ad-4124-50dd-d864898fb100-67c5/screen/a48612ab-542c-4d17-9445-4e7e03ebe84d
 
-* Eslint extension for Visual Studio Code (https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-* Stylelint extension for Visual Studio Code (https://marketplace.visualstudio.com/items?itemName=hex-ci.stylelint-plus)
-
-## Getting started
-1. Install all the modules by executing
->  npm i
-
-2. Run the app on a webserver instance
-> npm run dev
-
-3. To run create a new build
-> npm run build
-
-## Firebase link
+# Firebase link
 * https://werkstukmobdev1.firebaseapp.com
